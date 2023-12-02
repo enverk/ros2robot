@@ -1,0 +1,676 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>h01_kurulum_ubuntuRos2</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2cdf39be-dadd-4407-a3ab-4b123f72425f" class="page sans"><header><h1 class="page-title">h01_kurulum_ubuntuRos2</h1><p class="page-description"></p></header><div class="page-body"><h2 id="4bcc9e40-d286-4943-b213-e6c2218c15bb" class="">Raspberry Pi’da Ubuntu Kurulumu</h2><ol type="1" id="82a022df-53aa-474d-91a4-72da90d1dc0e" class="numbered-list" start="1"><li><strong>Raspberry Pi Imager Yükleme</strong></li></ol><p id="b3a6b6fd-08dd-44cd-8d69-432b07e7744c" class="">Uygun Ubuntu image dosyasını yüklemek için Raspberry tarafından geliştirilen Raspberry Imager ile microSD kart oluşturmak. Bunun için Raspberry Pi Imager programını yüklemelisiniz.</p><p id="ae2d5aa4-09d8-49fc-83b7-a985e1817aac" class="">Ubuntu işletim sistemini kullanıyorsanız:</p><p id="6f866e3b-ff20-4e57-b8d7-c503ce5d5b9c" class="">sudo snap install rpi-imager</p><p id="ee4b5e28-f014-4ee8-bd01-3cca967ced73" class="">Komutunu çalıştırarak indirebilirsiniz ya da</p><p id="738b08b8-1a87-4e19-8eff-7d95ca059110" class="">Bu adresten indirebilirsiniz: <a href="https://www.raspberrypi.com/software/">https://www.raspberrypi.com/software/</a></p><p id="7b160cc6-f39a-488b-b207-11304ec9f066" class="">Uygun olan programı kurduktan sonra microSD kartınızı bilgisayarınıza takın ve programı başlatın.</p><figure id="1aa49326-00e0-4fec-ae14-4017d9594a43" class="image"><a href="h01_kurulum_ubuntuRos2%202cdf39bedadd4407a3ab4b123f72425f/image1.jpeg"><img style="width:700px" src="h01_kurulum_ubuntuRos2%202cdf39bedadd4407a3ab4b123f72425f/image1.jpeg"/></a></figure><p id="68304632-e84b-47d0-b611-e7b91e5cf7de" class="">Şekil 1 - Raspberry Pi Imager giriş ekranı</p><p id="08ba2e0f-e2ef-4e92-b61a-8567f66381ab" class="">Raspberry Pi Imager programını başlattıktan sonra “Choose OS” seçeneğinden Ubuntu’yu</p><p id="d47fbd7c-b280-4613-9738-64782b248eef" class="">seçiniz.</p><figure id="91cd32d4-7329-4c07-ac24-3ab3d6beb9b9" class="image"><a href="h01_kurulum_ubuntuRos2%202cdf39bedadd4407a3ab4b123f72425f/image2.jpeg"><img style="width:700px" src="h01_kurulum_ubuntuRos2%202cdf39bedadd4407a3ab4b123f72425f/image2.jpeg"/></a></figure><p id="86183dc5-b151-4401-9866-13ece957af98" class="">Şekil 2 – İşletim sistemi seçimi</p><p id="bebe7fc0-80ab-422e-b010-92f41f7075f8" class="">Buradan “Other general-purpose OS” seçeneğinden Ubuntu’yu seçmelisiniz. Ubuntu’ya tıkladıktan sonra bir çok Ubuntu versiyonu gelecektir. İndirmeniz gereken 22.04 LTS 64 bit versiyonudur. Alternatif olarak “Use custom” seçeneği ile önceden <a href="https://ubuntu.com/download/raspberry-pi">https://ubuntu.com/download/raspberry-pi</a> sitesinden bilgisayarınıza indirdiğiniz Ubuntu Server 22.04 LTS ile de yapabilirsiniz.</p><p id="de2fb761-e3b5-46b1-b166-18845c49065a" class="">Imager’ı seçtikten sonra “Choose Device” seçeneğinden kullanılacak olan Raspberry Pi cihazının seçilmesi gerekmektedir.</p><figure id="13925a6c-279e-4390-8829-e070b65d9a95" class="image"><a href="h01_kurulum_ubuntuRos2%202cdf39bedadd4407a3ab4b123f72425f/image3.jpeg"><img style="width:700px" src="h01_kurulum_ubuntuRos2%202cdf39bedadd4407a3ab4b123f72425f/image3.jpeg"/></a></figure><p id="d268a8f2-04c4-4a35-8105-0c6526b3da40" class="">Şekil 3 – Raspberry Pi Device</p><p id="929aab8b-14c3-449d-8e97-6c6eaaa8a72c" class="">Daha sonra sıra SD kart seçimine geldi. Yükleme sırasında karttaki tüm veriler silinecektir. Bu sebeple SD kartın boş ya da içinde önemli dosya olmadığına dikkat edin.</p><p id="ee0305c1-aa82-4935-9829-c5f2236d62ef" class="">SD kart seçiminden sonra “Next” butonu aktive olacaktır. Bu butona tıkladıktan sonra “Advaneced options” sayfası açılacaktır. Burada hostname ve wifi ayarları yapılmalıdır. Locale düzeltilmelidir.</p><figure id="249cc532-e53f-409c-be47-f9533711e527" class="image"><a href="h01_kurulum_ubuntuRos2%202cdf39bedadd4407a3ab4b123f72425f/image4.jpeg"><img style="width:505px" src="h01_kurulum_ubuntuRos2%202cdf39bedadd4407a3ab4b123f72425f/image4.jpeg"/></a></figure><p id="f96e15d7-d396-4ce0-8f73-fb4eaee1e6ff" class="">Şekil 4 – Advaneced options</p><p id="81edb786-66d5-453d-b2cf-3f01c12d3def" class="">Save yaptıktan sonra “Write” butonu aktive olacaktır. Bu butona tıkladıktan sonra Imager dosyası microSD kartına yüklenmiş olacaktır.</p><ol type="1" id="29d23b9f-7597-49ae-a6e1-dae6c60c5dfa" class="numbered-list" start="1"><li><strong>Wİ-Fİ ya da ethernet bağlantısı kurma</strong></li></ol><p id="b64315d4-a24d-484a-b2c9-aa70675d4f8c" class="">Eğer Ethernet kablosu kullanacaksak, Raspberry Pi&#x27;nin Ethernet portuna bilgisayar&#x27;ımıza bağladığımız bir kablo yeterlidir. Kablosuz bağlantıyı ise aşağıdaki adımları takip ederek yapılmaktadır.</p><p id="54465ff3-d0a7-4f5b-aff0-b917eca82721" class="">SD kartı bilgisayarınızdan çıkarmadan önce bir dosya yöneticisi ile SD kartın içindeki &quot;system-boot&quot; klasörüne girelim. Bu klasör, ilk açılış sırasındaki başlangıç konfigürasyonlarını içerir. Klasör içindeki &quot;network-config&quot; dosyası, ağ bağlantılarıyla ilgili varsayılanları içermektedir.</p><p id="29b3edd5-9218-4ed1-98b5-cf762b21f78c" class="">Wi – Fi bilgilerini girmek için bu dosyada bazı değişiklikler yapılması gerekmektedir.</p><p id="87dd5eae-f583-48e3-8d4d-0ee62b4527b8" class="">version: 2</p><p id="be09793b-e90f-4bd8-bc30-974d727ba75e" class="">wifis:</p><p id="4022c99b-0b63-45de-a8cc-25584956d61b" class="">renderer: networkd</p><p id="0893ed52-370d-49f8-a0b4-24b713f78598" class="">wlan0:</p><p id="32668b08-3994-4a6f-8dd5-481d9864965f" class="">dhcp4: true</p><p id="0465c398-8fd7-4fb2-bcff-ea948f1f3fee" class="">optional: true</p><p id="567e9c27-9167-4fdc-8746-cbefcc7d1c73" class="">access-points:</p><p id="0ff561f4-1c5f-4eac-8123-a8f13f4cbb84" class="">&quot;wifi network name&quot;:</p><p id="c7774d93-6fc4-4ffe-be2b-721930760062" class="">password: &quot;&lt;wifi password&gt;&quot;</p><p id="5ae0a53e-e3d6-47d9-9c3f-fd4b12633c29" class="">ethernets:</p><p id="e4682d2c-0992-4720-a246-524930fefd05" class="">renderer: networkd</p><p id="c662778a-a961-416d-9bee-468ef5737b92" class="">eth0:</p><p id="5c620344-8d0e-4c5b-a33a-1da6bd1a0287" class="">dhcp4: true</p><p id="31651898-ceba-4401-a9ad-4fa86e243dfb" class="">optional: true</p><p id="c775d0bf-17ed-4396-8858-ebfff63f3471" class="">Dosyayı kaydederek SD kart çıkartılır. İlk yüklemeyi yapar yapmaz Raspberry internete bağlı olarak başlayacaktır.</p><ol type="1" id="425b665f-b189-45c3-96c6-fb08446926da" class="numbered-list" start="1"><li><strong>Ubuntu Server yükleme</strong></li></ol><p id="d5ef9b72-7fcd-4c89-b915-feff6a8f29b5" class="">Raspberry’nin IP adresini bulmak için ilk başta “ip add”,</p><p id="d926ea3a-20aa-4d62-8fa1-d5bdaa031fac" class="">ip add</p><p id="d85bcbc2-1b45-4910-be2d-484960913ed1" class="">komutu ile bağlı olduğumuz ağın ip adresi öğrenilir. Daha sonra “nmap” komutu ile bu ağda cihazlaraki portlara istek atar ve cihazları listeler. Bu işlemden sonra Raspberry’yi çalıştırıp yeniden “nmap” komutu çalıştırısak yeni gelen cihaz Raspberry’nin IP adresidir.</p><p id="faf66ac6-b702-471d-9a6c-1db5d2450a9d" class="">nmap &lt;ip adresi&gt;</p><p id="e3e0de86-e8f6-4a4c-ac97-1ae0b11251d5" class="">IP adresini tespit ettikten sonra sıradaki adım SSH ile uzaktan bağlantı sağlamak. Terminal açarak aşağıdaki komutu çalıştırılmalı.</p><p id="7034e2a9-d8dd-4c6a-8c9f-321ea09b44a8" class="">ssh &lt;Raspberry Pi adı&gt;@&lt;Raspberry Pi IP address&gt;</p><p id="db7d0603-0fe4-45bf-9b5c-900421c2c0a1" class="">Bu komutu yazdıktan sonra şöyle bir çıktı gelecek;</p><blockquote id="ba1852b4-dd76-4411-b1db-ae1cc3aede29" class="">Are you sure you want to continue connecting (yes/no/[fingerprint])?</blockquote><p id="dd5f38c7-9383-4026-b028-58e6b14b27a6" class="">Devam etmek için “yes” yazılmalıdır. Daha sonra şifre soracaktır, şifre girildikten sonra Raspberry Pi’yi Ubuntu Server üzerinden kullanmaya başlayabilirsiniz.</p><h2 id="956b6266-fd8b-4c23-a736-79b108bbf1b6" class="">Ubuntu’da ROS 2 Humble Kurulumu</h2><p id="1099536f-f3de-4577-a753-bf30a4a0b07b" class="">İlk olarak SSH bağlantısı yapılır. SSH bağlantısından sonra repository adreslerini güncellemek için “sudo apt update” komutu çalıştırılır.</p><p id="c2ad0811-ada9-4044-9766-76f511bee2e1" class="">sudo apt update</p><p id="358c50db-0d03-4cda-a482-71c460dd4e6b" class="">Sistemimizdeki paketlerin yeni sürümlerini denetledikten sonra yeni sürümleri yürütmek için “sudo apt upgrade” komutu çalıştırılır.</p><p id="96abdfd1-2d35-4781-9c13-0d79091c7f68" class="">sudo apt upgrade</p><p id="e6817528-7134-41d1-ae62-41caf81f027c" class="">Sistemi güncelledikten sonra ROS 2 kurulumunu yapmak için aşağıdaki adımlar izlenilmelidir.</p><ul id="489fdb05-8349-47cd-bb39-3c7bb9c4a2bd" class="bulleted-list"><li style="list-style-type:disc"><strong>Set locale</strong></li></ul><p id="88eaa394-6743-44c6-b00a-14a88b752df2" class="">UTF-8&#x27;i destekleyen bir yerel ayarda olup olmadığı kontrolu yapılmalıdır. Bunun için “locale” komutu ile UTF-8&#x27;i kontrol edin.</p><blockquote id="caf0440f-7b03-4a16-83b9-db2073a85025" class="">locale # check for UTF-8<p id="783f39ad-a66c-4c40-8b6f-19454a0300e7" class="">sudo apt update &amp;&amp; sudo apt install locales</p><p id="c12c07a6-d217-449c-9c4c-354cf157cf4a" class="">sudo locale-gen en_US en_US.UTF-8</p><p id="68567b7b-097d-44ee-853f-9429cd1829ac" class="">sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8</p><p id="b6405807-1d83-4078-ab5c-f426c5966b93" class="">export LANG=en_US.UTF-8</p></blockquote><p id="a2aa4dc7-7752-43d0-b6f4-d437e5d01afe" class="">Komutlar çalıştırıldıktan sonra tekrardan “locale” komutu ile kontrol edilmelidir.</p><blockquote id="1cbcd974-6ae4-4a6a-bc50-3e147efdf20c" class="">locale # verify settings</blockquote><ul id="d702370a-a433-434e-84ed-9696400f4807" class="bulleted-list"><li style="list-style-type:disc"><strong>Setup sources</strong></li></ul><blockquote id="d4b67fb3-3626-45a7-9695-b9fb370ccbfd" class="">ROS 2 apt deposu siste eklemek gerekecektir.<p id="0c324b7c-3768-4cea-bd2a-ed8bcfd4bec1" class="">Öncelikle Ubuntu Universe deposunun etkinleştirilmesi yapılmalıdır.</p><p id="cc062ca7-48d8-42a9-bd64-40cb5f165cb2" class="">sudo apt install software-properties-common</p><p id="5d91bd66-58d8-444c-9b45-dcda5927d6e2" class="">sudo add-apt-repository universe</p><p id="0fb7f787-c1a6-49d7-ab97-108a9e47b0a4" class="">Şimdi apt ile ROS 2 GPG anahtarını eklenmeli.</p><p id="d3da8f7d-c436-42fc-975f-b26bbd3ba546" class="">sudo apt update &amp;&amp; sudo apt install curl -y</p><p id="7efabc6c-b26f-4851-9037-9b4e689e85b9" class="">sudo curl -sSL <a href="https://raw.githubusercontent.com/ros/rosdistro/master/ros.key%20-o%20/usr/share/keyrings/ros-archive-keyring.gpg">https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg</a></p><p id="83fca5c7-0ead-40a5-88c5-a92a9b43556b" class="">Daha sonra depoyu kaynaklar listesine ekleyin.</p><p id="722a76c4-4775-446a-ade8-c5bc0bb94785" class="">echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release &amp;&amp; echo $UBUNTU_CODENAME) main&quot; | sudo tee /etc/apt/sources.list.d/ros2.list &gt; /dev/null</p></blockquote><ul id="f704d68b-d763-42ce-b49d-ec51e44fca23" class="bulleted-list"><li style="list-style-type:disc"><strong>Install ROS 2 packages</strong></li></ul><blockquote id="15572cd6-bfe1-473c-8833-9cdb05cbbe2a" class="">Yukarıdaki işlemleri yaptıktan sonra apt deposu önbelleklerini tekrardan güncelleyin.<p id="499d9c2e-d778-4847-b0b3-ef381d06b77c" class="">sudo apt update</p><p id="4e0e48cc-2a11-41a6-8660-43acb1c6c27a" class="">sudo apt upgrade</p><p id="ec7e2b77-1764-4a85-99f1-ce480db1eee7" class="">ROS 2’nin masaüstü ve ROS-Base şeklinde iki farklı kurulumu mevcuttur. Bu kurulumlar için aşağıda gerekli kodlar verilmiştir. Raspberry Pi için ROS-Base kurulumu yapılarak devam edilmelidir.</p><p id="8f306a08-a151-446f-8947-dbd1d0dd5e00" class="">Masaüstü Kurulumu</p><p id="f391652c-8c0f-4d3a-ac88-ca2065d36791" class="">sudo apt install ros-humble-desktop</p><p id="c26de123-2f07-4a22-b437-660f7cb1d74b" class="">ROS-Base Kurulumu</p><p id="2a234417-efa4-43c3-bb16-c38a0e57b468" class="">sudo apt install ros-humble-ros-base</p></blockquote><ul id="5594a947-0579-4ac1-8935-18ad0ad594e9" class="bulleted-list"><li style="list-style-type:disc"><strong>Environment setup (Sourcing the setup script)</strong></li></ul><blockquote id="939824dc-9c62-4ccd-b946-799ac9603673" class="">Setup.bash dosyası ile ortam ayarlarını yapın<p id="aeeeafbe-2efc-4b68-8ddb-9f4e133c6f39" class="">nano ~/.bashrc</p><p id="358e18a6-282e-40a3-874b-7cc8bb72a771" class="">yukarıdaki komutu kullanarak bashrc dosyasını açın ve aşağıdaki komutu bu dosyaya ekleyiniz.</p><p id="e3d3c569-be60-46a2-9bd7-45ca9a049254" class="">source /opt/ros/humble/setup.bash</p></blockquote><p id="b9774086-53fa-469c-b40e-787d3e4f4e97" class="">Tüm bu adımlardan sonra Ros 2 kurulumu tamamlanmıştır. Kurulumun doğru bir şekilde tamamlandığını kontrol etmek için aşağıdaki örneği deneyebilirsiniz.</p><p id="af8fd935-cb1d-4084-8b16-623a114a82a2" class=""><strong>Talker-listener</strong></p><p id="af048396-af7d-4921-910a-af8764d8ff15" class="">Bir Python konuşmacısını(talker) çalıştırın:</p><p id="ba9edd2d-3d92-4d1e-b848-f03f60caf9eb" class="">ros2 run demo_nodes_py talker</p><p id="45cc5c45-23e4-4937-9317-c2ec4f06bb52" class="">Başka bir terminal açın ve ardından bir C++ dinleyicisini(listener) çalıştırın:</p><p id="b8aeb94e-5433-4a93-acfa-a8b57a762ced" class="">ros2 run demo_nodes_cpp listener</p><p id="d7325ce4-c418-43c6-86d3-14f5b8cb8160" class="">Konuşmacının mesaj yayınladığını söylediğini ve dinleyicinin de bu mesajları duyduğunu söylediğini görmelisiniz. Bu, hem Python hem de c++ API’larının düzgün çalıştığını göstermektedir.</p><p id="e4804dca-6576-41d0-b8b9-6f24ff67ecef" class=""><strong>KAYNAKÇA</strong></p><p id="fa084a1f-7887-43d6-a40a-b0cc78c9f334" class="">[1] <a href="https://ubuntu.com/download/raspberry-pi">https://ubuntu.com/download/raspberry-pi</a></p><p id="6c2910ea-b6a6-42ab-a631-d3b399a8fb16" class="">[2] <a href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html#</a></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
