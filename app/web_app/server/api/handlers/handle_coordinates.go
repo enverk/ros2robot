@@ -1,36 +1,30 @@
-package handlres
+package handlers
 
 import (
 	"encoding/json"
 	"fmt"
 	"net/http"
 
+	"github.com/labstack/echo/v4"
 	controllers "ros2.com/web_app/server/controllers/mqttclient"
 )
 
 type Coordinates struct {
-	X int `json:"X"`
-	Y int `json:"Y"`
+    X int `json:"X"`
+    Y int `json:"Y"`
 }
 
-func HandleCoordinates(w http.ResponseWriter, r *http.Request) {
-	var coords Coordinates
-	centerX, centerY := 0, 0
-	err := json.NewDecoder(r.Body).Decode(&coords)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-	defer r.Body.Close()
+func HandleCoordinates(c echo.Context) error {
+    var coords Coordinates
 
-	coords.X = coords.X - centerX
-	coords.Y = coords.Y - centerY
+    if err := c.Bind(&coords); err != nil {
+        return c.JSON(http.StatusBadRequest, map[string]string{"error": err.Error()})
+    }
 
-	coordsJSON, _ := json.Marshal(coords)
+    // Koordinatları işle...
+    coordsJSON, _ := json.Marshal(coords)
+    fmt.Printf("Koordinatlar: %+v\n", coords)
+    controllers.Publisher("control/movement", string(coordsJSON))
 
-	controllers.Publisher("control/movement", string(coordsJSON))
-
-	fmt.Printf("Koordinantlar %+v\n", coords)
-
-	w.WriteHeader(http.StatusOK)
+    return c.JSON(http.StatusOK, coords)
 }

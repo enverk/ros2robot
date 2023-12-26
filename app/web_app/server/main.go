@@ -4,7 +4,6 @@ import (
 	"ros2.com/web_app/server/server"
 )
 
-func main(){
+func main() {
 	server.Run()
 }
-

@@ -12,7 +12,7 @@ var messageHandler MQTT.MessageHandler = func(client MQTT.Client, msg MQTT.Messa
 }
 
 func Listener() {
-	broker := "tcp://192.168.1.109:1883"  // MQTT broker ve port numarası
+	broker := "tcp://192.168.43.235:1883"  // MQTT broker ve port numarası
 
 	opts := MQTT.NewClientOptions()
 	opts.AddBroker(broker)
