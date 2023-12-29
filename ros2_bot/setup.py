@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'serial_motor_node = ros2_bot.serial_motor_node:main',
-            'serial_motor_node_kontrol = ros2_bot.serial_motor_node_kontrol:main'
+            'serial_motor_node_test = ros2_bot.serial_motor_node_test:main'
         ],
     },
 )

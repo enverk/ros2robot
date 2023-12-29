@@ -9,9 +9,9 @@ from std_msgs.msg import String
 # ROS2 içerisinde bir Node(Düğüm) Nesnesi oluşturularak gerekli nitelikler eklenmektedir.
 # Bu kaynak kodunda iki tane yayıncı yazılımı gerçekleştirilerek,
 # farklı düğümlerin farklı yayınları dinlemesi amaçlanmaktadır.
-class Publishers(Node):
+class Serial_Motor_Node_Test(Node):
     def __init__(self):
-        super().__init__("Serial_Motor_Node_Kontrol")
+        super().__init__("Serial_Motor_Node_Test")
 
         # Altta bulunan iki kod satırında yapılacak yayınların,
         # hangi mesaj türü ve hangi isim ile yayın yapılacakları belirlenmiştir.
@@ -28,7 +28,7 @@ class Publishers(Node):
 # Son olarak ana fonksiyon ve içerisinde yazılan Düğüme ait bir nesne oluşturulmuştur.
 def main(args=None):
     rclpy.init(args=args)
-    publisher = Publishers()
+    publisher = Serial_Motor_Node_Test()
     print("basladi")
     publisher.get_logger().info("basladi")
     data = "ILERI"
