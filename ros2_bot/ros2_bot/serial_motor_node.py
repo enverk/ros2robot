@@ -7,7 +7,7 @@ from serial import Serial
 class Serial_Motor_Node(Node):
     def __init__(self):
         super().__init__("Serial_Motor_Node")
-        self.ser = Serial("/dev/ttyUSB", 115200, timeout=0.1)
+        self.ser = Serial("/dev/ttyUSB0", 115200, timeout=0.1)
         self.get_logger().info(self.ser.readline())
 
         # Bu kod satırında dinleyicinin hangi mesaj türünü ve hangi isimi dinlediğini belirterek,
@@ -20,8 +20,7 @@ class Serial_Motor_Node(Node):
     def listener_callback(self, msg):
         self.get_logger().info('I heard "%s"' % msg.data)
         metin = msg.data
-        metin.encode("ascii","ignore").decode("ascii")
-        self.ser.write(metin)
+        self.ser.write(bytearray(metin,'ascii'))
 
 
 def main(args=None):
