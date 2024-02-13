@@ -12,7 +12,7 @@ func Publisher(topic string, message string) {
 		fmt.Println("Abonelik hatası:", token.Error())
 		os.Exit(1)
 	}
-	message = "ileri"
+	message = "ILERI"
 
 	for {
 		token := Client.Publish(topic, 1, false, message)
