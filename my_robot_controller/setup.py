@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'ros2_bot'
+package_name = 'my_robot_controller'
 
 setup(
     name=package_name,
@@ -13,15 +13,16 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='b1ack0d3ath',
-    maintainer_email='dogrueyup2@gmail.com',
+    maintainer='pi',
+    maintainer_email='pi@todo.todo',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'serial_motor_node = ros2_bot.serial_motor_node:main',
-            'serial_motor_node_test = ros2_bot.serial_motor_node_test:main'
+            "listener= my_robot_controller.listener:main",
+            "talker= my_robot_controller.talker:main",
+            "cam_sub=my_robot_controller.cam_sub:main",
         ],
     },
 )
