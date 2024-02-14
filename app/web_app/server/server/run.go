@@ -4,7 +4,7 @@ import (
 	//"ros2.com/mobile_app/server/controllers"
 
 	"ros2.com/web_app/server/api/routes"
-	"ros2.com/web_app/server/api/templates"
+	
 	//controllers "ros2.com/web_app/server/controllers/mqttclient"
 	"ros2.com/web_app/server/databases"
 )
@@ -18,8 +18,8 @@ func Run() {
 	// controllers.Setup()
 	// controllers.Publisher("controller/movement","ILERI")
 	
-	templates.Init()
+	
 
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(":5172"))
 
 }
