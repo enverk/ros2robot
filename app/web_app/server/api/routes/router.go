@@ -23,5 +23,6 @@ func New() *echo.Echo {
 		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
 	}))
 	e.POST("/api/joystick", handlers.JoystickHandler)
+	
 	return e
 }

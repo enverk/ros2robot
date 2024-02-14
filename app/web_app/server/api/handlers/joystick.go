@@ -25,7 +25,7 @@ func JoystickHandler(c echo.Context) error {
 	if err != nil {
 		return err
 	}
-	controllers.Publisher("control/movement", string(jDataJson))
+	controllers.Publisher("controller/movement", string(jDataJson))
 
 	return c.JSON(http.StatusOK, jData)
 }
