@@ -27,8 +27,8 @@ void setup() {
 void loop() {
   if (Serial.available()) {
     String komut_motor = Serial.readString();
-    int temp;
-    double x = komut_motor.substring(0, komut_motor.indexOf(',') - 1).toDouble();
+    komut_motor.trim();
+    double x = komut_motor.substring(0, komut_motor.indexOf(',')).toDouble();
     double y = komut_motor.substring(komut_motor.indexOf(',') + 1).toDouble();
     convert(x,y);
     move(x,y);
