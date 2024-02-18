@@ -9,21 +9,20 @@ import (
 	"ros2.com/web_app/server/databases"
 )
 
-func Authenticate(client *databases.Mongo,username,password,role string) (*User,error){
+func Authenticate(client *databases.Mongo,email,password,role string) (*User,error){
 	
 	collection :=client.Client.Database("ros2db").Collection("users")
 
-	filter :=bson.M{"username":username,"password":password,"role":role}
+	filter :=bson.M{"email":email,"password":password}
 
 	
 	var user User
 	err:=collection.FindOne(context.Background(),filter).Decode(&user)
 	if err!=nil{
 		if err==mongo.ErrNoDocuments{
-			return nil, fmt.Errorf("Username or Password is wrong")
-
+			return nil, fmt.Errorf("email or Password is wrong")
 		}
-		return nil, fmt.Errorf("Error occured in authenticate")
+		return nil, fmt.Errorf("error occured in authenticate")
 	}
 	return &user,nil
 
