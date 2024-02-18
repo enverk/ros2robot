@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -9,8 +9,8 @@ import (
 )
 
 type JoystickData struct {
-	X float64 `json:"x"`
-	Y float64 `json:"y"`
+	X float32 `json:"x"`
+	Y float32 `json:"y"`
 }
 
 func JoystickHandler(c echo.Context) error {
@@ -19,13 +19,9 @@ func JoystickHandler(c echo.Context) error {
 	if err := c.Bind(&jData); err != nil {
 		return err
 	}
-	println(jData.X, jData.Y)
+	formattedData := fmt.Sprintf("%.2f,%.2f", jData.X, jData.Y)
 
-	jDataJson, err := json.Marshal(jData)
-	if err != nil {
-		return err
-	}
-	controllers.Publisher("controller/movement", string(jDataJson))
+	controllers.Publisher("controller/movement", string(formattedData))
 
 	return c.JSON(http.StatusOK, jData)
 }

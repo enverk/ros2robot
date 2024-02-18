@@ -10,7 +10,7 @@ import (
 var Client MQTT.Client
 
 func Setup() {
-	broker := "tcp://192.168.10.235:1883"
+	broker := "tcp://192.168.43.235:1883"
 	opts := MQTT.NewClientOptions()
 	opts.AddBroker(broker)
 
