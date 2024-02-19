@@ -20,7 +20,6 @@ func JoystickHandler(c echo.Context) error {
 		return err
 	}
 	formattedData := fmt.Sprintf("%.2f,%.2f", jData.X, jData.Y)
-
 	controllers.Publisher("controller/movement", string(formattedData))
 
 	return c.JSON(http.StatusOK, jData)

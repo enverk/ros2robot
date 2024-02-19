@@ -7,22 +7,23 @@ import (
 	"ros2.com/web_app/server/databases"
 )
 
-type DBRoute struct {
-	Client databases.Mongo
-}
 
-func New() *echo.Echo {
+
+func New(client *databases.Mongo) *echo.Echo {
 	e := echo.New()
-	// r:=DBRoute{
-	// 	Client:*client,
-	// }
-	e.GET("/api", MainPage)
+	r:= AuthRoute{
+	 	Client:*client,
+	}
 
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"*"}, 
+		AllowOrigins: []string{"*"},
 		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
 	}))
+	e.GET("/api", MainPage)
+	//TODO Login postunu ayarla
+	e.POST("/login", r.Login)
+
 	e.POST("/api/joystick", handlers.JoystickHandler)
-	
+
 	return e
 }

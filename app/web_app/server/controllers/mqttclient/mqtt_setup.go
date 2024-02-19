@@ -9,8 +9,9 @@ import (
 
 var Client MQTT.Client
 
-func Setup() {
-	broker := "tcp://192.168.43.235:1883"
+func Setup(broker string) {
+	//TODO brokerı main pageden iste
+
 	opts := MQTT.NewClientOptions()
 	opts.AddBroker(broker)
 

@@ -9,7 +9,7 @@ import (
 	"ros2.com/web_app/server/databases"
 )
 
-func Authenticate(client *databases.Mongo,email,password,role string) (*User,error){
+func Authenticate(client *databases.Mongo,email,password string) (*User,error){
 	
 	collection :=client.Client.Database("ros2db").Collection("users")
 
