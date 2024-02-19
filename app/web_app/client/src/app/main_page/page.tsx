@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useRef } from 'react';
 import nipplejs from 'nipplejs';
-import './App.css';
+
 
 export const ENDPOINT = "http://localhost:5172/api/joystick"; // Go server'ınızın çalıştığı port ve endpoint
 
