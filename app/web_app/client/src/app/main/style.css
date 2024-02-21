@@ -1,0 +1,41 @@
+body {
+    
+    background: #f0f0f0;
+  }
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  .joystick {
+    width: 200; 
+    height: 200;
+  }
+  .form-right-aligned {
+    display: flex;
+    align-items: center;
+  }
+  
+  #ip-address-input {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+
+  .inputButton {
+    border: none;
+    background: cornflowerblue;
+    color: white;
+    padding: 12px 12px;
+    margin: 4px;
+    font-size: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
