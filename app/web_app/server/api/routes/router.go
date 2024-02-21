@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"ros2.com/web_app/server/api/handlers"
 	"ros2.com/web_app/server/databases"
 )
 
@@ -16,12 +17,11 @@ func New(client *databases.Mongo) *echo.Echo {
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
 	}))
-	e.POST("/main", MainPage)
+	e.POST("/web/main/broker", handlers.BrokerHandler)
 	e.GET("/main", MainPage)
-	//TODO Login postunu ayarla
-	e.POST("/login", r.Login)
+	e.POST("/web/login", r.Login)
 
-	e.POST("/main", JoystickHandler)
+	e.POST("/web/main/joystick", handlers.JoystickHandler)
 
 	return e
 }
