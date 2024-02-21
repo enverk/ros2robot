@@ -1,16 +1,43 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 	controllers "ros2.com/web_app/server/controllers/mqttclient"
 )
 
-func MainPage(c echo.Context) error {
-	
+type JoystickData struct {
+	X float32 `json:"x"`
+	Y float32 `json:"y"`
+}
 
-	controllers.Setup("doldur")
+type Broker struct {
+	Brokerip string `json:'brokerip'`
+}
+
+func MainPage(c echo.Context) error {
+
+	var brokerReq Broker
+
+	if err := c.Bind(&brokerReq); err != nil {
+		return err
+	}
+
+	broker := "tcp://" + brokerReq.Brokerip
+	controllers.Setup(broker)
 	return c.String(http.StatusOK, "Welcome To Main Page")
 }
 
+func JoystickHandler(c echo.Context) error {
+
+	var jData JoystickData
+	if err := c.Bind(&jData); err != nil {
+		return err
+	}
+	formattedData := fmt.Sprintf("%.2f,%.2f", jData.X, jData.Y)
+	controllers.Publisher("controller/movement", string(formattedData))
+
+	return c.JSON(http.StatusOK, jData)
+}

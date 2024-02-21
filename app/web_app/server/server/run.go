@@ -1,13 +1,11 @@
 package server
 
 import (
-	//"ros2.com/mobile_app/server/controllers"
 
 	"fmt"
 
 	"ros2.com/web_app/server/api/routes"
 
-	//controllers "ros2.com/web_app/server/controllers/mqttclient"
 	"ros2.com/web_app/server/databases"
 )
 
@@ -18,8 +16,7 @@ func Run() {
 		fmt.Println(err)
 	}
 	e := routes.New(client)
-	// controllers.Listener()
 
-	e.Logger.Fatal(e.Start(":5172"))
+	e.Logger.Fatal(e.Start(":3001"))
 
 }
