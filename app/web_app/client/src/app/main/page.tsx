@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import nipplejs from 'nipplejs';
-
+import './style.css'
 
 export const ENDPOINT = "http://localhost:5172/api/joystick"; // Go server'ınızın çalıştığı port ve endpoint
 
@@ -78,7 +78,21 @@ function App() {
     }
   }, []);
 
-  return <div ref={containerRef} style={{ width: 200, height: 200 }} />;
+  return (
+    <div className="form-container">
+      <form  className="form-right-aligned">
+        <label htmlFor="ip-address-input">IP Address:</label>
+        <input
+          
+          
+        />
+        <br />
+        <button type="submit" className="inputButton">Send IP Address</button>
+        <div ref={containerRef} className='joystick' />
+      </form>
+      
+    </div>
+  );
 };
 
 export default App;
