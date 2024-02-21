@@ -13,9 +13,9 @@ type Broker struct {
 func BrokerHandler(c echo.Context) error {
 	var brokerReq Broker
 	if err := c.Bind(&brokerReq); err != nil {
-		return err
+		fmt.Println(err) 
 	}
-	broker := "tcp://" + brokerReq.Brokerip
+	broker := "tcp://" + brokerReq.Brokerip+":1883"
 	fmt.Println(broker)
 	controllers.Setup(broker)
 	return c.String(http.StatusOK, broker)
