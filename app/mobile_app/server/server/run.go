@@ -1,15 +1,22 @@
 package server
 
 import (
-	"ros2.com/mobile_app/server/controllers"
+
+	"fmt"
+
 	"ros2.com/web_app/server/api/routes"
+
+	"ros2.com/web_app/server/databases"
 )
 
 func Run() {
-	e := routes.New()
-	controllers.Listener()
-	controllers.Publisher()
 
-	e.Logger.Fatal(e.Start(":1323"))
+	client, err := databases.New()
+	if err != nil {
+		fmt.Println(err)
+	}
+	e := routes.New(client)
+
+	e.Logger.Fatal(e.Start(":3001"))
 
 }

@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import nipplejs from 'nipplejs';
 import './style.css'
 
-export const ENDPOINT = "http://localhost:3001/web/main/joystick"; // Go server'ınızın çalıştığı port ve endpoint
+export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve endpoint
 
 function App() {
   const containerRef = useRef(null);
@@ -82,7 +82,7 @@ function App() {
     }
   }, []);
   const onSubmit = (data: any) => {
-    fetch("http://localhost:3001/web/main/broker", {
+    fetch("http://localhost:3001/main/broker", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

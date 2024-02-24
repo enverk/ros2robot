@@ -17,11 +17,11 @@ func New(client *databases.Mongo) *echo.Echo {
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
 	}))
-	e.POST("/web/main/broker", handlers.BrokerHandler)
+	e.POST("/main/broker", handlers.BrokerHandler)
 	e.GET("/main", MainPage)
-	e.POST("/web/login", r.Login)
+	e.POST("/login", r.Login)
 
-	e.POST("/web/main/joystick", handlers.JoystickHandler)
+	e.POST("/main/joystick", handlers.JoystickHandler)
 
 	return e
 }

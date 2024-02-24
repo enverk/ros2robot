@@ -17,7 +17,7 @@ function page() {
   }
 
   const onSubmit = (data: any) => {
-    fetch("http://localhost:3001/web/login", {
+    fetch("http://localhost:3001/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
