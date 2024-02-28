@@ -5,20 +5,16 @@ go 1.21.4
 require (
 	github.com/eclipse/paho.mqtt.golang v1.4.3
 	github.com/golang-jwt/jwt/v5 v5.0.0
-	github.com/kpeu3i/gods4 v1.0.0
 	github.com/labstack/echo/v4 v4.11.4
 )
 
 require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
-	github.com/pkg/errors v0.9.1 // indirect
-	github.com/stamp/hid v0.0.0-20190105143849-bc55d7d13ce1 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 )
 
 require (
-	github.com/egonelbre/exp v0.0.0-20240206113609-69e1ec7ef8f9
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect

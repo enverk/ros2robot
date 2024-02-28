@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"ros2.com/mobile_app/server/databases"
+	"ros2.com/web_app/server/databases"
 	"ros2.com/web_app/server/api/domains"
 )
 
@@ -27,8 +27,10 @@ func SignUp(c echo.Context, client *databases.Mongo) error {
 		Email:    email,
 		Password: password,
 	}
-
+	
 	collection := client.Client.Database("ros2db").Collection("users")
+	//filter := bson.M{"email": u.Email}
+	
 	_, err := collection.InsertOne(context.Background(), u)
 
 	if err != nil {
@@ -37,4 +39,10 @@ func SignUp(c echo.Context, client *databases.Mongo) error {
 	}
 	return c.String(http.StatusOK, "User created ")
 
+}
+func SignUpHandler(client *databases.Mongo) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		return SignUp(c, client)
+
+	}
 }
