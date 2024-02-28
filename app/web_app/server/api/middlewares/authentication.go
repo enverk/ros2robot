@@ -6,24 +6,24 @@ import (
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
+	"ros2.com/web_app/server/api/domains"
 	"ros2.com/web_app/server/databases"
 )
 
-func Authenticate(client *databases.Mongo,email,password string) (*User,error){
-	
-	collection :=client.Client.Database("ros2db").Collection("users")
+func Authenticate(client *databases.Mongo, email, password string) (*domains.User, error) {
 
-	filter :=bson.M{"email":email,"password":password}
+	collection := client.Client.Database("ros2db").Collection("users")
 
-	
-	var user User
-	err:=collection.FindOne(context.Background(),filter).Decode(&user)
-	if err!=nil{
-		if err==mongo.ErrNoDocuments{
+	filter := bson.M{"email": email, "password": password}
+
+	var user domains.User
+	err := collection.FindOne(context.Background(), filter).Decode(&user)
+	if err != nil {
+		if err == mongo.ErrNoDocuments {
 			return nil, fmt.Errorf("email or Password is wrong")
 		}
 		return nil, fmt.Errorf("error occured in authenticate")
 	}
-	return &user,nil
+	return &user, nil
 
-} 	
+}

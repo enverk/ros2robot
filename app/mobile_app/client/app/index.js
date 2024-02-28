@@ -3,8 +3,7 @@ import { useState } from 'react'
 import { Stack, useRouter } from 'expo-router';
 
 import { COLORS, icons, images, SIZES } from '../constants';
-import { Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome } from '../components'
-
+import { Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome,JoystickComponent } from '../components'
 const Home = () => {
     const router = useRouter();
     return (
@@ -33,6 +32,8 @@ const Home = () => {
                     <Welcome />
                     <Popularjobs />
                     <Nearbyjobs />
+                    <JoystickComponent/>
+                    
 
                 </View>
             </ScrollView>
