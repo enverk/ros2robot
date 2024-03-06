@@ -42,9 +42,9 @@ void loop() {
     komut_motor.trim();
     x = komut_motor.substring(0, komut_motor.indexOf(',')).toDouble();
     y = komut_motor.substring(komut_motor.indexOf(',') + 1).toDouble();
-      Serial.println(String(x) + " " + y);
-      convert();
-      rotation();
+    Serial.println(String(x) + " " + y);
+    convert();
+    rotation();
   }
   digitalWrite(right_pwm, LOW);
   digitalWrite(left_pwm, LOW);
@@ -79,8 +79,8 @@ void rotation() {
     digitalWrite(left_direction, LOW);
   }
 
-  motor_interval_right = 10000 - ((right * 9000));
-  motor_interval_left = 10000 - ((left * 9000));
+  motor_interval_right = 10000 - ((right * 8325));
+  motor_interval_left = 10000 - ((left * 8325));
   Serial.println(String(left) + " " + right);
   Serial.println(String(motor_interval_left) + " " + motor_interval_right);
 }
