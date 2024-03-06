@@ -50,7 +50,7 @@ class Serial_Motor_Node(Node):
         if right_flag:
             self.right_speed *= -1
 
-    def convert(x, y):
+    def convert(self,x, y):
         r = math.hypot(x, y)
         t = math.atan2(y, x)
         t -= math.pi / 4
