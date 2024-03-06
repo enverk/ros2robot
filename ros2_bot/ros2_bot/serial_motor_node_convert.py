@@ -11,6 +11,8 @@ class Serial_Motor_Node(Node):
         super().__init__("Serial_Motor_Node")
         self.ser = Serial("/dev/ttyUSB0", 115200, timeout=0.1)
         self.get_logger().info(self.ser.readline())
+        self.left_speed=10000
+        self.right_speed=10000
 
         # Bu kod satırında dinleyicinin hangi mesaj türünü ve hangi isimi dinlediğini belirterek,
         # dinleme gerçekleştiğinde hangi fonksiyonu çalıştıracağı belirtilmektedir.
