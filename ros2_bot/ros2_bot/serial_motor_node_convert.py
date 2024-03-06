@@ -20,7 +20,7 @@ class Serial_Motor_Node(Node):
             String, "serial_motor", self.listener_callback, 10
         )
 
-        self.timer_serial_set = self.create_timer(0.1, self.serial_set)
+        self.timer_serial_set = self.create_timer(1, self.serial_set)
 
     # Dinleme gerçekleştiğinde çalışan fonksiyonun gerçekleştireceği eylemlerin bulunduğu fonksiyon.
     def listener_callback(self, msg):
