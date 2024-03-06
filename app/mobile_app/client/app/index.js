@@ -1,9 +1,9 @@
 import { View, Text, ScrollView, SafeAreaView } from 'react-native'
 import { useState } from 'react'
 import { Stack, useRouter } from 'expo-router';
-
 import { COLORS, icons, images, SIZES } from '../constants';
-import { Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome,JoystickComponent } from '../components'
+import { Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome, JoystickComponent } from '../components'
+
 const Home = () => {
     const router = useRouter();
     return (
@@ -21,22 +21,16 @@ const Home = () => {
                     headerTitle: "",
                 }}
             />
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View
-                    style={
-                        {
-                            flex: 1,
-                            padding: SIZES.medium
-                        }
-                    }>
-                    <Welcome />
-                    <Popularjobs />
-                    <Nearbyjobs />
-                    <JoystickComponent/>
-                    
-
-                </View>
-            </ScrollView>
+            <View
+                style={
+                    {
+                        flex: 1,
+                        padding: SIZES.medium
+                    }
+                }>
+                <Welcome />
+            </View>
+            
         </SafeAreaView>
     )
 }
