@@ -64,10 +64,10 @@ class Serial_Motor_Node(Node):
     def serial_set(self):
         speed = str(self.left_speed) + "," + str(self.right_speed)
         self.get_logger().info(speed)
-        self.ser.write(str(speed))
+        self.ser.write(bytearray(speed, "ascii"))
 
     def serial_get(self):
-        self.get_logger().info("Alinan: " + str(self.ser.readline()))
+        self.get_logger().info("Alinan: " + str(self.ser.readline().rstrip()))
 
 
 def main(args=None):
