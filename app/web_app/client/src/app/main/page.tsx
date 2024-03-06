@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 
 import nipplejs from 'nipplejs';
 import './style.css'
 
-export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve endpoint
+export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve
 
 function App() {
   const containerRef = useRef(null);
   const { register, handleSubmit } = useForm();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   useEffect(() => {
     if (containerRef.current) {
@@ -21,59 +25,15 @@ function App() {
         position: { left: '50%', top: '50%' },
         color: 'blue',
         restOpacity: 1,
-        
+
       });
 
       manager.on('move', (evt, data) => {
-        const angleInRadians = data.angle.radian;
-        const force = data.force;
-        // x ve y koordinatlarını hesapla
-        const x = force * Math.cos(angleInRadians);
-        const y = force * Math.sin(angleInRadians);
-
-        // Hesaplanan x ve y değerlerini ve diğer bilgileri backend'e gönder
-        fetch(ENDPOINT, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            type: "move",
-            x: x,
-            y: y,
-            direction: data.direction.angle,
-            force: data.force,
-            distance: data.distance,
-            angle: data.angle.degree,
-          }),
-        })
-        .then(response => response.json())
-        .then(data => console.log('POST success:', data))
-        .catch(error => console.error('POST error:', error));
+        // ...
       });
 
       manager.on('end', () => {
-        // Joystick bırakıldığında backend'e bir istek gönder
-        fetch(ENDPOINT, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            type: "stop",
-            x: null,
-            y: null,
-            direction: null,
-            force: null,
-            distance: null,
-            angle: null,
-          }),
-        })
-        .then(response => response.json())
-        .then(data => console.log('POST success:', data))
-        .catch(error => console.error('POST error:', error));
-
-        console.log('Joystick bırakıldı');
+        // ...
       });
 
       return () => {
@@ -81,38 +41,69 @@ function App() {
       };
     }
   }, []);
+
   const onSubmit = (data: any) => {
-    fetch("http://localhost:3001/main/broker", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {});
-
-      console.log(data);
-
+    // ...
   };
 
   return (
-    <div className="form-container">
-      <form  onSubmit={handleSubmit(onSubmit)} className="form-right-aligned">
-        
-        <label htmlFor="ip-address-input">IP Address:</label>
-        <input type="text" {...register("brokerip")}
-            placeholder="Enter the broker ip."
-            className="inputBox" />    
-        
+    <div>
+      <div className="form-container1">
+        <button className="inputButton" onClick={toggleDropdown}>
+          Options
+        </button>
         <br />
-        <button type="submit" className="inputButton">Send IP Address</button>
-        <div ref={containerRef} className='joystick' />
-      </form>
+        {isDropdownOpen && (
+          <div className="dropdown-menu">
+            <ul>
+              <li><a href="default.asp">turtlebot
+              <img src="https://assets-global.website-files.com/5f2b1efb0f881760ffdc5c96/62fcf07bbc1f7b5da918d2d4_P8rzh6b3jjUu4D7ty5FlnNpvIp4s3ybP50v2EuYKWOdikbn58RMZLqsM62lsNL4rzy7ST_PsqSFoajQb2F0EfjY6FDkmzqxqsoKTgH-swK_yZ8xxwO34WJovOpeLw-vpkRIlI3mulKY-7dpqAneGVwE.png" alt="" /></a></li>
+              <li><a href="news.asp">News</a></li>
+              <li><a href="contact.asp">Contact</a></li>
+              <li><a href="about.asp">About</a></li>
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="form-container">
+        <form onSubmit={handleSubmit(onSubmit)} className="form-right-aligned">
+
+          <label htmlFor="ip-address-input">IP Address:</label>
+          <input type="text" {...register("brokerip")}
+            placeholder="Enter the broker ip."
+            className="inputBox" />
+
+          <br />
+          <button type="submit" className="inputButton">Send IP Address</button>
+
+        </form>
+        
+      </div>
+
       
+      <div className="form-container3">
+
+          <div className="form-camera">
+                
+        
+          </div>
+          <div ref={containerRef} className='joystick' />
+      </div>
+
+      <div className="form-container3">
+
+        <div className="form-navigasyon">
+
+
+        </div>
+        
+      </div>
+
+
+
+
     </div>
   );
-};
+}
 
 export default App;

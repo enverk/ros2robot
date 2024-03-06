@@ -2,27 +2,17 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { GoogleLogin } from 'react-google-login';
 import { useRouter } from 'next/navigation';
 import './style.css';
 import { STATUS_CODES } from "http";
+
 
 function page() {
   const { register, handleSubmit } = useForm();
   const router = useRouter()
 
-  const LoginSuccess = (res: any) => {
-    console.log(res)
-
-    
-  }
-
-  const LoginFail = (res: any) => {
-    console.log(res)
-  }
-
   const onSubmit = (data: any) => {
-    fetch("http://localhost:3001/login", {
+    fetch("http://localhost:3001/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,56 +22,46 @@ function page() {
     })
     .then((response) => {
       if (response.ok) {
-        // Başarılı bir HTTP yanıt alındığında
-        router.push('/main');
-
+        console.log("Kayıt başarılı!");
+        // Kayıt başarılıysa giriş sayfasına yönlendirme yapabilirsiniz.
+        window.location.href = "/login";
       } else {
-        // Başarısız bir HTTP yanıt alındığında
-        console.log(response.statusText);
-        alert('Your username or password is incorrect. Please try again.');
+        console.error("Kayıt başarısız!");
       }
     })
     .catch((error) => {
       // Hata durumunda
       console.error('Error:', error);
     });
+  
   };
 
   return (
     <div className="mainContainer">
         <div className="titleContainer">
-        <div>Kullanıcı Girişi</div>
+        <div>Kayıt</div>
       </div>
       <br />
       <hr />
-      <div className="inputContainer"> 
+      <div className="inputContainer">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="inputContainer">
-          
             <input type="text" {...register("email")}
-            placeholder="Enter your email here"
+            placeholder="Email"
             className="inputBox" />
           </div>
           <br />
           <div className="inputContainer">
-            
             <input type="password" {...register("password")} 
-            placeholder="Enter your password here"
+            placeholder="Password"
             className="inputBox"/>
           </div>
           <br />
-          <button type="submit" className="inputButton">Giriş Yap</button>
-          <a href="/signup" className="a">
-            Üye ol
-          </a>
+          <button type="submit" className="inputButton" >Kayıt ol</button>
+
         </form>
       </div>
-      <br />     
-      <GoogleLogin 
-      clientId="481729939558-s74nks3clojfdup270nsmst09be3jcl0.apps.googleusercontent.com"
-      onSuccess={LoginSuccess}
-      onFailure={LoginFail}
-      />
+      
     </div>
  
   );

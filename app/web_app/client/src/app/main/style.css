@@ -1,10 +1,10 @@
 body {
-    background: #f0f0f0;
+    background:  #ffffff;
   }
 
 .form-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
@@ -12,12 +12,125 @@ body {
     border-radius: 4px;
     width: 50%;
     margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    background: #b3c8e7;
+
+  }
+  .form-container1 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px;
+
+    border-radius: 4px;
+    width: 100%;
+    margin: 0 auto;
+
+  }
+  .form-camera {
+    display: flex;
+    align-items: center;
+    padding: 84px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    border: 1px solid #ccc;
+    border-radius: 23px;
+    width: 75%;
+    margin: 0 auto;
+
+    background: #afb8c4;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    padding-left: 384px;
+    padding-right: 0px;
+    margin-left: 13px;
+    margin-bottom: 10px;
+
+
+  }
+  .form-navigasyon {
+    display: flex;
+    align-items: center;
+    padding: 84px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    border: 1px solid #ccc;
+    border-radius: 23px;
+    width: 95%;
+    margin: 0 auto;
+
+    background: #afb8c4;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    padding-left: 384px;
+    padding-right: 0px;
+    margin-left: 13px;
+    margin-bottom: 10px;
+
+
+  }
+  .form-container3 {
+ display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  background: #b3c8e7;
+  justify-content: space-between; /* Add this line */
+  position: relative; /* Add this line */
+
+
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+  }
+  
+  li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  li a:hover {
+    background-color: #b3c8e7;
+    color: white;
   }
   
   .joystick {
-    width: 200; 
-    height: 200;
+   
+    position: absolute;
+  opacity: 1;
+  display: block;
+  z-index: 999;
+  transition: opacity 250ms ease 0s;
+  top: 50%; /* Change this line */
+  right: 0; /* Add this line */
+  transform: translateY(-50%); /* Add this line */
+  width: 200px;
+  height: 200px;
+  margin-left: auto; /* Add this line */
   }
+
   .form-right-aligned {
     display: flex;
     align-items: center;
@@ -38,6 +151,9 @@ body {
     border-radius: 8px;
     cursor: pointer;
   }
+
+
+
   .inputBox {
     height: 48px;
     width: 400px;
@@ -47,3 +163,23 @@ body {
     padding-left: 8px;
     color: rgb(0, 0, 0);
   }
+
+  
+.dropdown-menu {
+  position: static;
+  width: 150px;
+  top: 100%;
+  right: 0;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+
+  
