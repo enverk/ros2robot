@@ -3,6 +3,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from serial import Serial
 import math
+from time import sleep
 from decimal import Decimal
 
 
@@ -67,6 +68,7 @@ class Serial_Motor_Node(Node):
         self.ser.write(bytearray(speed, "ascii"))
 
     def serial_get(self):
+        sleep(.01)
         self.get_logger().info("Alinan: " + str(self.ser.readline().rstrip()))
 
 
