@@ -15,25 +15,25 @@ type AuthRoute struct {
 }
 
 type LoginRequest struct {
-    Email    string `json:"email"`
-    Password string `json:"password"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 func (a *AuthRoute) Login(c echo.Context) error {
 
 	var logReq LoginRequest
 
-	if err:= c.Bind(&logReq); err!=nil {
+	if err := c.Bind(&logReq); err != nil {
 		return err
 	}
 	email := logReq.Email
 	password := logReq.Password
-	
+
 	fmt.Println(email)
 	fmt.Println(password)
 
 	user, err := middlewares.Authenticate(&a.Client, email, password)
-	
+
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -50,8 +50,6 @@ func (a *AuthRoute) Login(c echo.Context) error {
 
 	middlewares.SetCookie(c, "access_token", accessToken, time.Now().Add(time.Hour*24))
 	middlewares.SetCookie(c, "refresh_token", refreshToken, time.Now().Add(time.Hour*24))
-
-	
 
 	return c.JSON(http.StatusOK, echo.Map{
 		"access_token":  accessToken,

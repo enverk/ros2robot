@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+
 	"ros2.com/web_app/server/api/handlers"
 	"ros2.com/web_app/server/databases"
 )
@@ -22,6 +23,6 @@ func New(client *databases.Mongo) *echo.Echo {
 	e.POST("/login", r.Login)
 
 	e.POST("/main/joystick", handlers.JoystickHandler)
-
+	e.POST("/signup", SignUpHandler(client))
 	return e
 }

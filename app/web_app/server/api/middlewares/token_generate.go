@@ -6,56 +6,51 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/labstack/echo/v4"
+	"ros2.com/web_app/server/api/domains"
 )
-
-type User struct {
-	ID       string `bson:"_id,omitempty"`
-	Email    string `bson:"email"`
-	Password string `bson:"password"`
-}
 
 var jwtKey = []byte("ros2-secret-key")
 
-func GenerateToken(user *User) (string, error) {
+func GenerateToken(user *domains.User) (string, error) {
 	claims := jwt.MapClaims{
-		"sub":1,
-		"email":user.Email,
-		"exp":time.Now().Add(time.Hour*24).Unix(),
+		"sub":   1,
+		"email": user.Email,
+		"exp":   time.Now().Add(time.Hour * 24).Unix(),
 	}
-	token :=jwt.NewWithClaims(jwt.SigningMethodHS256,claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	accessToken,err:=token.SignedString(jwtKey)
+	accessToken, err := token.SignedString(jwtKey)
 
-	if err!=nil{
-		return "",err
+	if err != nil {
+		return "", err
 	}
-	return accessToken,nil
+	return accessToken, nil
 
 }
 
-func GenerateRefreshToken(user *User) (string, error) {
+func GenerateRefreshToken(user *domains.User) (string, error) {
 	claims := jwt.MapClaims{
-		"sub":1,
-		"email":user.Email,
-		"exp":time.Now().Add(time.Hour*24).Unix(),
+		"sub":   1,
+		"email": user.Email,
+		"exp":   time.Now().Add(time.Hour * 24).Unix(),
 	}
-	token :=jwt.NewWithClaims(jwt.SigningMethodHS256,claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	refreshToken,err:=token.SignedString(jwtKey)
+	refreshToken, err := token.SignedString(jwtKey)
 
-	if err!= nil{
-		return "",err
+	if err != nil {
+		return "", err
 	}
-	return refreshToken,nil
+	return refreshToken, nil
 
 }
 
-func SetCookie(c echo.Context,name,value string, expires time.Time){
-	cookie:=&http.Cookie{
-		Name:name,
-		Value:value,
-		Expires:expires,
-		Path:"/",
+func SetCookie(c echo.Context, name, value string, expires time.Time) {
+	cookie := &http.Cookie{
+		Name:    name,
+		Value:   value,
+		Expires: expires,
+		Path:    "/",
 	}
 	c.SetCookie(cookie)
 }
