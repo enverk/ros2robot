@@ -61,7 +61,7 @@ class Serial_Motor_Node(Node):
         return left, right
 
     def serial_set(self):
-        speed = str(self.left_speed + "," + self.right_speed)
+        speed = str(self.left_speed) + "," + str(self.right_speed)
         self.ser.write(bytearray(speed, "ascii"))
 
 
