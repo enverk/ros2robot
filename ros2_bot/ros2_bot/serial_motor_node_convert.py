@@ -11,8 +11,8 @@ class Serial_Motor_Node(Node):
         super().__init__("Serial_Motor_Node")
         self.ser = Serial("/dev/ttyUSB0", 115200, timeout=0.1)
         self.get_logger().info(self.ser.readline())
-        self.left_speed=10000
-        self.right_speed=10000
+        self.left_speed = 10000
+        self.right_speed = 10000
 
         # Bu kod satırında dinleyicinin hangi mesaj türünü ve hangi isimi dinlediğini belirterek,
         # dinleme gerçekleştiğinde hangi fonksiyonu çalıştıracağı belirtilmektedir.
@@ -21,6 +21,7 @@ class Serial_Motor_Node(Node):
         )
 
         self.timer_serial_set = self.create_timer(1, self.serial_set)
+        self.timer_serial_get = self.create_timer(0.1, self.serial_get)
 
     # Dinleme gerçekleştiğinde çalışan fonksiyonun gerçekleştireceği eylemlerin bulunduğu fonksiyon.
     def listener_callback(self, msg):
@@ -35,7 +36,7 @@ class Serial_Motor_Node(Node):
             left_value *= -1
         else:
             left_flag = False
-        
+
         if right_value < 0:
             right_flag = True
             right_value *= -1
@@ -50,7 +51,7 @@ class Serial_Motor_Node(Node):
         if right_flag:
             self.right_speed *= -1
 
-    def convert(self,x, y):
+    def convert(self, x, y):
         r = math.hypot(x, y)
         t = math.atan2(y, x)
         t -= math.pi / 4
@@ -64,6 +65,10 @@ class Serial_Motor_Node(Node):
         speed = str(self.left_speed) + "," + str(self.right_speed)
         self.get_logger().info(speed)
         self.ser.write(bytearray(speed, "ascii"))
+
+    def serial_get(self):
+        data = self.ser.readline().decode("utf-8").rstrip()
+        self.get_logger().info(data)
 
 
 def main(args=None):
