@@ -62,7 +62,7 @@ class Serial_Motor_Node(Node):
 
     def serial_set(self):
         speed = str(self.left_speed) + "," + str(self.right_speed)
-        self.get_logger().info('I heard "%s"' % msg.data)
+        self.get_logger().info(speed)
         self.ser.write(bytearray(speed, "ascii"))
 
 
