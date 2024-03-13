@@ -42,16 +42,16 @@ body {
   }
   
   .inputButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     background: cornflowerblue;
-    color: white;
-    padding: 12px 24px;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
     margin: 8px;
     font-size: 24px;
     border-radius: 8px;
     cursor: pointer;
-   
   }
-  .a{
-    margin: 8px;
-  }
+  
