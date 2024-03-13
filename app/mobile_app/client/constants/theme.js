@@ -1,8 +1,16 @@
+import styled from "styled-components";
+
 const COLORS = {
   primary: "#312651",
   secondary: "#444262",
   tertiary: "#FF7754",
 
+  softpink:"#D97E96",
+  softpurple:"#8C5679",
+  darkblue:"#302E59",
+  darkerblue:"#202140",
+  tan:"#F29B9B",
+  
   gray: "#83829A",
   gray2: "#C1C0C8",
 

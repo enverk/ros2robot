@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
   },
+  buttonContainer: {
+    width: "100%",
+    height:"20%"
+    
+  },
   userName: {
     fontFamily: FONT.regular,
     fontSize: SIZES.large,
@@ -44,10 +49,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  loginBtn: {
+    width: "20%",
+    height: "10%",
+    backgroundColor: COLORS.softpurple,
+    borderRadius: SIZES.xLarge,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   searchBtn: {
     width: "100%",
     height: "20%",
-    backgroundColor: COLORS.tertiary,
+    backgroundColor: COLORS.softpurple,
     borderRadius: SIZES.xLarge,
     justifyContent: "center",
     alignItems: "center",

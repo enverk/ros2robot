@@ -1,10 +1,15 @@
-import { Stack } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import { useFonts } from 'expo-font';
+import {createStackNavigator} from '@react-navigation/stack'
+import  LoginScreenView  from './login/[id]';
+import SignupScreen from './signup/[id]';
+import Home from './index';
+import ControlScreen from './control/[id]';
 
 import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
+const Stack = createStackNavigator();
 
 const Layout = () => {
     const [fontsLoaded] = useFonts({
@@ -15,7 +20,6 @@ const Layout = () => {
 
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
-            // Fontlar yüklendiğinde SplashScreen'i gizle
             await SplashScreen.hideAsync();
         }
     }, [fontsLoaded]);
@@ -24,9 +28,21 @@ const Layout = () => {
         onLayoutRootView();
     }, [onLayoutRootView]);
 
-    if (!fontsLoaded) return null; // Fontlar yüklenene kadar null dönerek beklet
+    if (!fontsLoaded) return null; 
 
-    return <Stack onLayout={onLayoutRootView} />;
+    return (
+        <Stack.Navigator
+        initialRouteName='LoginScreenView' ///the name of the initial screen
+        screenOptions={{
+          headerShown: false,
+        }}>
+   
+            <Stack.Screen name="LoginScreenView" component={LoginScreenView}/>
+            <Stack.Screen name="Home" component={Home}/>
+            <Stack.Screen name="ControlScreen" component={ControlScreen}/>
+            <Stack.Screen name="SignupScreen" component={SignupScreen}/>
+         </Stack.Navigator>
+    );
 };
 
 export default Layout;

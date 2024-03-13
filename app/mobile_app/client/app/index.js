@@ -25,12 +25,12 @@ const Home = () => {
                 style={
                     {
                         flex: 1,
-                        padding: SIZES.medium
+                        padding: SIZES.large
                     }
                 }>
                 <Welcome />
             </View>
-            
+
         </SafeAreaView>
     )
 }

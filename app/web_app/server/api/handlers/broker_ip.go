@@ -18,5 +18,5 @@ func BrokerHandler(c echo.Context) error {
 	broker := "tcp://" + brokerReq.Brokerip+":1883"
 	fmt.Println(broker)
 	controllers.Setup(broker)
-	return c.String(http.StatusOK, "Broker'a başarıyla bağlandı!")
+	return c.JSON(http.StatusOK, map[string]string{"message": "Broker'a başarıyla bağlandı!"})
 }
