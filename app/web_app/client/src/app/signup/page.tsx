@@ -37,6 +37,7 @@ function page() {
   };
 
   return (
+    <div className="main">
     <div className="mainContainer">
         <div className="titleContainer">
         <div>Kayıt</div>
@@ -63,7 +64,7 @@ function page() {
       </div>
       
     </div>
- 
+    </div>
   );
 }
 

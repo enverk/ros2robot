@@ -1,7 +1,28 @@
 body {
-    background-color: #f0f0f0; 
+  background: #202140;
   }
   
+.main{
+  /*background-image: url("https://img.freepik.com/free-vector/gradient-technological-background_23-2148884155.jpg?w=1380&t=st=1709717762~exp=1709718362~hmac=215f1fb2d9c3a84aa5f63412ae9b9c7ddee25ccc2eadb98bfeaadce741f4070c"); */
+  background: #302E59;
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #f8f4f7;
+    border-radius: 150px;
+    width: 50%;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    margin-top: 100px;
+    height: 692px
+ 
+    
+    
+}
+
 .mainContainer {
     display: flex;
     flex-direction: column;
@@ -10,6 +31,7 @@ body {
     height: 100vh;
   }
   
+
   .titleContainer {
     display: flex;
     flex-direction: column;
@@ -36,16 +58,16 @@ body {
     width: 400px;
     font-size: large;
     border-radius: 8px;
-    border: 1px solid grey;
+    border: 1px solid #F29B9B;
     padding-left: 8px;
     color: black;
   }
   
   .inputButton {
     border: none;
-    background: cornflowerblue;
+    background: #774967;
     color: white;
-    padding: 12px 24px;
+    padding: 12px 106px;
     margin: 8px;
     font-size: 24px;
     border-radius: 8px;

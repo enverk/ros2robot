@@ -23,7 +23,7 @@ function App() {
         zone: containerRef.current,
         mode: 'static',
         position: { left: '50%', top: '50%' },
-        color: 'blue',
+        
         restOpacity: 1,
 
       });

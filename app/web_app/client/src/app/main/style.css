@@ -10,11 +10,11 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 50px;
-    background: #b3c8e7;
+    background: #8C5679;
 
   }
   .form-container1 {
@@ -40,7 +40,7 @@ body {
     width: 75%;
     margin: 0 auto;
 
-    background: #afb8c4;
+    background: #ffffff;
     flex-wrap: wrap;
     align-content: stretch;
     flex-direction: row;
@@ -64,7 +64,7 @@ body {
     width: 95%;
     margin: 0 auto;
 
-    background: #afb8c4;
+    background: #ffffff;
     flex-wrap: wrap;
     align-content: stretch;
     flex-direction: row;
@@ -87,11 +87,11 @@ body {
   padding-bottom: 50px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 50%;
+  width: 75%;
   margin: 0 auto;
   margin-top: 10px;
   margin-bottom: 50px;
-  background: #b3c8e7;
+  background: #8C5679;
   justify-content: space-between; /* Add this line */
   position: relative; /* Add this line */
 
@@ -112,7 +112,7 @@ body {
     text-decoration: none;
   }
   li a:hover {
-    background-color: #b3c8e7;
+    background-color: #490768;
     color: white;
   }
   
@@ -143,7 +143,7 @@ body {
 
   .inputButton {
     border: none;
-    background: cornflowerblue;
+    background: #312651;
     color: white;
     padding: 12px 12px;
     margin: 4px;

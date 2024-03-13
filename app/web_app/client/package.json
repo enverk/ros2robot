@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mdb-react-ui-kit": "^7.2.0",
     "next": "14.1.0",
     "nipplejs": "^0.10.1",
     "react": "^18",
