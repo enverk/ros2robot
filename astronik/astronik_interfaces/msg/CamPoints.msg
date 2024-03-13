@@ -1,0 +1,12 @@
+int64 point_top_right_x
+int64 point_top_right_y
+int64 point_top_left_x
+int64 point_top_left_y
+int64 point_right_top_x
+int64 point_right_top_y
+int64 point_right_back_x
+int64 point_right_back_y
+int64 point_left_top_x
+int64 point_left_top_y
+int64 point_left_back_x
+int64 point_left_back_y
