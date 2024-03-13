@@ -59,7 +59,7 @@ class Serial_Motor_Node(Node):
         left = r * math.cos(t)
         right = r * math.sin(t)
         left = left * math.sqrt(2)
-        right = left * math.sqrt(2)
+        right = right * math.sqrt(2)
         return left, right
 
     def serial_set(self):
