@@ -21,8 +21,8 @@ class Serial_Motor_Node(Node):
             String, "serial_motor", self.listener_callback, 10
         )
 
-        self.timer_serial_set = self.create_timer(2, self.serial_set)
-        self.timer_serial_get = self.create_timer(2, self.serial_get)
+        self.timer_serial_set = self.create_timer(1, self.serial_set)
+        self.timer_serial_get = self.create_timer(1, self.serial_get)
 
     # Dinleme gerçekleştiğinde çalışan fonksiyonun gerçekleştireceği eylemlerin bulunduğu fonksiyon.
     def listener_callback(self, msg):
@@ -59,7 +59,7 @@ class Serial_Motor_Node(Node):
         left = r * math.cos(t)
         right = r * math.sin(t)
         left = left * math.sqrt(2)
-        right = left * math.sqrt(2)
+        right = right * math.sqrt(2)
         return left, right
 
     def serial_set(self):

@@ -31,11 +31,14 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
-    String komut_motor = Serial.readString();
-    komut_motor.trim();
+    String komut_motor;
+    while (Serial.available()) {
+      komut_motor += char(Serial.read());
+      delayMicroseconds(90);
+    }
     Serial.println(komut_motor);
     motor_period_left = komut_motor.substring(0, komut_motor.indexOf(',')).toInt();
-    motor_period_right = komut_motor.substring(komut_motor.indexOf(',')+1).toInt();
+    motor_period_right = komut_motor.substring(komut_motor.indexOf(',') + 1).toInt();
     rotation();
   }
   digitalWrite(right_pwm, LOW);
@@ -75,4 +78,7 @@ void move() {
     digitalWrite(right_pwm, HIGH);
     previous_motor_time_right = current_time;
   }
+  
+  digitalWrite(right_pwm, LOW);
+  digitalWrite(left_pwm, LOW);
 }

@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f0f0; 
+  background: #202140;
   }
   
 .mainContainer {
@@ -46,12 +46,32 @@ body {
     align-items: center;
     justify-content: center;
     border: none;
-    background: cornflowerblue;
+    background: #774967;
     color: rgb(255, 255, 255);
-    padding: 10px 20px;
+    padding: 10px 152px;
     margin: 8px;
     font-size: 24px;
     border-radius: 8px;
     cursor: pointer;
+  }
+
+  .main{
+    background: #302E59;
+    display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border: 1px solid #f8f4f7;
+      border-radius: 150px;
+      width: 50%;
+      margin: 0 auto;
+      top: 50%;
+      left: 50%;
+      margin-top: 100px;
+      height: 692px
+   
+      
+      
   }
   

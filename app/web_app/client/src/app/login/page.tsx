@@ -1,16 +1,30 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { GoogleLogin } from 'react-google-login';
 import { useRouter } from 'next/navigation';
 import './style.css';
 import { STATUS_CODES } from "http";
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBInput,
+  MDBIcon
+}
+from 'mdb-react-ui-kit';
+
 
 function page() {
   const { register, handleSubmit } = useForm();
   const router = useRouter()
 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const LoginSuccess = (res: any) => {
     console.log(res)
 
@@ -48,42 +62,46 @@ function page() {
   };
 
   return (
-    <div className="mainContainer">
+    <div className="main">
+      <div className="mainContainer">
         <div className="titleContainer">
-        <div>Kullanıcı Girişi</div>
+          <div>Kullanıcı Girişi</div>
+        </div>
+        <br />
+        <hr />
+        <div className="inputContainer">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="inputContainer">
+
+              <input type="email" {...register("email")}
+                placeholder="Enter your email here"
+                className="inputBox"
+                onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <br />
+            <div className="inputContainer">
+
+              <input type="password" {...register("password")}
+                placeholder="Enter your password here"
+                className="inputBox"
+                onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <br />
+            <button type="submit" className="inputButton">Giriş Yap</button>
+            <a href="/signup" className="a">
+              Üye ol
+            </a>
+          </form>
+        </div>
+        <br />
+        <GoogleLogin
+          clientId="481729939558-s74nks3clojfdup270nsmst09be3jcl0.apps.googleusercontent.com"
+          onSuccess={LoginSuccess}
+          onFailure={LoginFail}
+        />
+
       </div>
-      <br />
-      <hr />
-      <div className="inputContainer"> 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="inputContainer">
-          
-            <input type="text" {...register("email")}
-            placeholder="Enter your email here"
-            className="inputBox" />
-          </div>
-          <br />
-          <div className="inputContainer">
-            
-            <input type="password" {...register("password")} 
-            placeholder="Enter your password here"
-            className="inputBox"/>
-          </div>
-          <br />
-          <button type="submit" className="inputButton">Giriş Yap</button>
-          <a href="/signup" className="a">
-            Üye ol
-          </a>
-        </form>
-      </div>
-      <br />     
-      <GoogleLogin 
-      clientId="481729939558-s74nks3clojfdup270nsmst09be3jcl0.apps.googleusercontent.com"
-      onSuccess={LoginSuccess}
-      onFailure={LoginFail}
-      />
     </div>
- 
   );
 }
 
