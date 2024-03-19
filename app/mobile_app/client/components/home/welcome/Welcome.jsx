@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import styles from './welcome.style';
+import { SIZES } from '../../../constants';
 
 
 const Welcome = () => {
@@ -44,7 +45,13 @@ const Welcome = () => {
   };
 
   return (
-    <View>
+    <View  style={
+      {
+          flex: 1,
+          padding: SIZES.large
+      }
+  }>
+   
       <View style={styles.container}>
 
         <Text style={styles.welcomeMessage}>Please write the IP Address of the robot you want to use</Text>
@@ -64,11 +71,6 @@ const Welcome = () => {
         <Text style={styles.searchBtnText}>Connect</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginBtn}
-       onPress={() => router.push('/login/[id]')}
-      >
-      <Text>Log in</Text>
-      </TouchableOpacity>
     </View>
   );
 };

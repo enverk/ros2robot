@@ -6,9 +6,7 @@ import { COLORS, icons, images, SIZES } from '../../constants';
 
 function SignupScreen() {
   return (
-    <SafeAreaView style={{flex:1, backgroundColor:COLORS.lightWhite}}>
-        <Signup/>
-    </SafeAreaView>
+        <Signup/>  
   )
 }
 

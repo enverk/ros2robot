@@ -1,15 +1,15 @@
 import { useCallback, useEffect } from 'react';
 import { useFonts } from 'expo-font';
-import {createStackNavigator} from '@react-navigation/stack'
 import  LoginScreenView  from './login/[id]';
 import SignupScreen from './signup/[id]';
 import Home from './index';
 import ControlScreen from './control/[id]';
+import { COLORS } from '../constants';
+import { Stack } from 'expo-router';
 
 import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
-const Stack = createStackNavigator();
 
 const Layout = () => {
     const [fontsLoaded] = useFonts({
@@ -31,17 +31,48 @@ const Layout = () => {
     if (!fontsLoaded) return null; 
 
     return (
-        <Stack.Navigator
-        initialRouteName='LoginScreenView' ///the name of the initial screen
-        screenOptions={{
-          headerShown: false,
-        }}>
+        <Stack>
    
-            <Stack.Screen name="LoginScreenView" component={LoginScreenView}/>
-            <Stack.Screen name="Home" component={Home}/>
-            <Stack.Screen name="ControlScreen" component={ControlScreen}/>
-            <Stack.Screen name="SignupScreen" component={SignupScreen}/>
-         </Stack.Navigator>
+            <Stack.Screen name="login/[id]" options={{
+                headerTitle:"Login",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+            }}/>
+            <Stack.Screen name="index"  options={{
+                headerTitle:"Home Page",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+
+            }} />
+            <Stack.Screen name="control/[id]"  options={{
+                headerTitle:"Controller",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+
+            }} />
+            <Stack.Screen name="signup/[id]"  options={{
+                headerTitle:"Sign Up",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+
+            }} />
+            <Stack.Screen name="main/[user]"  options={{
+                headerTitle:"Main",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+
+            }} />
+        </Stack>
     );
 };
 

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   welcomeMessage: {
     fontFamily: FONT.bold,
     fontSize: SIZES.xLarge,
-    color: COLORS.primary,
+    color: COLORS.lightWhite,
     marginTop: 2,
   },
   searchContainer: {
@@ -50,16 +50,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   loginBtn: {
-    width: "20%",
-    height: "10%",
+    width: "50%",
+    height: "20%",
     backgroundColor: COLORS.softpurple,
     borderRadius: SIZES.xLarge,
     justifyContent: "center",
     alignItems: "center",
+    flexDirection:'row',
   },
+  
   searchBtn: {
     width: "100%",
-    height: "20%",
+    height: "10%",
     backgroundColor: COLORS.softpurple,
     borderRadius: SIZES.xLarge,
     justifyContent: "center",
@@ -81,10 +83,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: activeJobType === item ? COLORS.secondary : COLORS.gray2,
   }),
-  tabText: (activeJobType, item) => ({
+  tabText: {
     fontFamily: FONT.medium,
-    color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
-  }),
+    fontSize:17,
+    color: COLORS.white,
+  },
 });
 
 export default styles;

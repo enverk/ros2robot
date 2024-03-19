@@ -14,6 +14,8 @@ import (
 
 type SignupRequest struct {
 	Email    string `json:"email"`
+	Name string `json:"name"`
+	Surname string `json:"surname"`
 	Password string `json:"password"`
 }
 
@@ -25,9 +27,13 @@ func SignUp(c echo.Context, client *databases.Mongo) error {
 	}
 	email := signupReqReq.Email
 	password := signupReqReq.Password
+	name:=signupReqReq.Name
+	surname:=signupReqReq.Surname
 
 	u := &domains.User{
 		Email:    email,
+		Name: name,
+		Surname: surname,
 		Password: password,
 	}
 	response := domains.ResponseMessage{

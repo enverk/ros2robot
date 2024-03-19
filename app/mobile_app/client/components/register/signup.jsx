@@ -17,6 +17,8 @@ import { router } from 'expo-router';
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -39,8 +41,8 @@ const Signup = () => {
     return password!=repeatPassword;
   }
 
-  const handleSignUp = () => {
-    router.push('/signup/[id]')
+  const handleLogin = () => {
+    router.push('/login/[id]')
   }
 
   const handleSignup = () => {
@@ -99,7 +101,7 @@ const Signup = () => {
   return (
     <View style={styles.signup_container}>
       <View style={styles.header}>
-        <Text style={styles.welcomeMessage}>Kayıt Olun</Text>
+        <Text style={styles.welcomeMessage}>Sign Up</Text>
       </View>
       <View style={styles.center_container}>
         <View style={styles.form_info}>
@@ -115,6 +117,25 @@ const Signup = () => {
           {emailError ? (
             <Text style={styles.errorText}>{emailError}</Text>
           ) : null}
+
+          <TextInput
+            style={[styles.email_input]}
+            placeholder={'Name'}
+            placeholderTextColor="#BCBCBC80"
+            onChangeText={(text) => setName(text)}
+            value={name}
+            autoCapitalize="none"
+            keyboardType="default"
+          />
+          <TextInput
+            style={[styles.email_input]}
+            placeholder={'Surname'}
+            placeholderTextColor="#BCBCBC80"
+            onChangeText={(text) => setSurname(text)}
+            value={surname}
+            autoCapitalize="none"
+            keyboardType="default"
+          />
 
           <View style={styles.container}>
             <TextInput
@@ -177,7 +198,7 @@ const Signup = () => {
           </TouchableOpacity>
           <View style={styles.loginContainer}>
             <Text style={{color:'white'}}>You Already Have an Account?</Text>
-            <TouchableOpacity style={styles.loginBtn} onPress={handleSignUp}>
+            <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
               <Text style={styles.loginText}>Log in</Text>
             </TouchableOpacity>
           </View>

@@ -14,9 +14,9 @@ func Setup(broker string) {
 
 	opts := MQTT.NewClientOptions()
 	opts.AddBroker(broker)
-
 	Client = MQTT.NewClient(opts)
 
+	//Listener(broker)
 	if token := Client.Connect(); token.Wait() && token.Error() != nil {
 		fmt.Println("Bağlantı Hatası", token.Error())
 		os.Exit(1)

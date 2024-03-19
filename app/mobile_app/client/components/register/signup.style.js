@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   header:{
     fontSize:50,
     color:COLORS.white,
-    alignItems:'center',
+    alignItems:'flex-start',
     justifyContent:'center',
   },
   loginContainer: {

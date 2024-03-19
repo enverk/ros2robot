@@ -76,7 +76,7 @@ const Login = () => {
         .then((data) => {
           // Handle API response
           console.log('API Response:', data);
-          router.push('/')
+          router.push( '/main/[user]')
           // setIsLoading(false); // Hide loader
         })
         .catch((error) => {
