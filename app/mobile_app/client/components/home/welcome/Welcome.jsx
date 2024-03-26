@@ -67,7 +67,7 @@ const Welcome = () => {
         </View>
 
       </View>
-      <TouchableOpacity style={styles.searchBtn} onPress={sendIPToServer} >
+      <TouchableOpacity style={styles.searchBtn} onPress={router.push('/control/[id]')} >
         <Text style={styles.searchBtnText}>Connect</Text>
       </TouchableOpacity>
 

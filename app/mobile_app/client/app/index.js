@@ -21,7 +21,6 @@ const Home = () => {
             }
     
             try {
-                // API adresinizi ve endpoint'inizi buraya ekleyin
                 const response = await axios.get('http://10.0.2.2:3001/main/user/details', {
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -30,7 +29,6 @@ const Home = () => {
                 const userDetails = response.data;
                 
                 setUserDetails(userDetails);
-                // Router ile dinamik yönlendirme yapabilirsiniz, örneğin:
                 router.push(`/main/${userDetails.userId}`);
             } catch (error) {
                 console.error('Kullanıcı detayları çekilirken bir hata oluştu:', error);

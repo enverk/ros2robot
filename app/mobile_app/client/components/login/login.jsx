@@ -74,14 +74,11 @@ const Login = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          // Handle API response
           console.log('API Response:', data);
           router.push( '/main/[user]')
-          // setIsLoading(false); // Hide loader
         })
         .catch((error) => {
           console.error('Error:', error);
-          // setIsLoading(false); // Hide loader
         });
     }
   };

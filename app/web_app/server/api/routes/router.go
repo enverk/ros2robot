@@ -10,6 +10,7 @@ import (
 
 func New(client *databases.Mongo) *echo.Echo {
 	e := echo.New()
+	//TODO: Buraya restricted arealar eklenecek. 
 	r := AuthRoute{
 		Client: *client,
 	}

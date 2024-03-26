@@ -10,7 +10,6 @@ import (
 var Client MQTT.Client
 
 func Setup(broker string) {
-	//TODO brokerı main pageden iste
 
 	opts := MQTT.NewClientOptions()
 	opts.AddBroker(broker)
