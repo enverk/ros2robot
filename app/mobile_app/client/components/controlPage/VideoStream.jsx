@@ -1,18 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image } from 'react-native';
-import io from 'socket.io-client';
 
 const VideoStreamDisplay = ({ id }) => {
   const [imageSrc, setImageSrc] = useState('');
 
   useEffect(() => {
-    // Sunucunun yerel IP adresi ve portu ile değiştirin
-    const socket = io("http://192.168.1.106:3001");
-    socket.on('video_frame', (data) => {
-      setImageSrc(`data:image/jpeg;base64,${data.data}`); // `data.data` kullanılmalıdır.
-    });
+    
+    const ws = new WebSocket('ws://10.0.2.2:3001'); 
 
-    return () => socket.disconnect();
+    ws.onopen = () => {
+      console.log('WebSocket connection established');
+    };
+
+    ws.onmessage = (e) => {
+      
+      const blob = e.data;
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageSrc(reader.result);
+      };
+      reader.readAsDataURL(blob);
+    };
+
+    ws.onerror = (e) => {
+      console.log(e.message);
+    };
+
+    ws.onclose = (e) => {
+      console.log('WebSocket connection closed');
+    };
+
+    return () => {
+      ws.close();
+    };
   }, []);
 
   return (
