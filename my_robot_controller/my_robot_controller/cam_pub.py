@@ -12,8 +12,8 @@ class VideoPublisher(Node):
 
     def __init__(self):
         super().__init__('video_publisher')
-        self.publisher_ = self.create_publisher(Image, 'video_frames', 20)
-        self.timer_period = 0.05  
+        self.publisher_ = self.create_publisher(Image, 'video_frames', 10)
+        self.timer_period = 0.05 
         self.timer = self.create_timer(self.timer_period, self.timer_callback)
         self.bridge = CvBridge()
         self.cap = cv2.VideoCapture(0)
