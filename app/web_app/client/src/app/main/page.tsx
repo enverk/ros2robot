@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 
 import nipplejs from 'nipplejs';
-import './style.css'
+import './style.css';
+import Camera from './camera'; 
+import Navigation from './navigasyon'; 
 
 export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve
 
@@ -80,28 +82,16 @@ function App() {
         
       </div>
 
+
       
-      <div className="form-container3">
-
-          <div className="form-camera">
-                
-        
-          </div>
-          <div ref={containerRef} className='joystick' />
-      </div>
+      <Camera />
 
       <div className="form-container3">
-
-        <div className="form-navigasyon">
-
-
-        </div>
-        
+        <div ref={containerRef} className='joystick' />
       </div>
 
-
-
-
+      
+      <Navigation />
     </div>
   );
 }
