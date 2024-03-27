@@ -1,6 +1,11 @@
-import { Stack } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 import { useFonts } from 'expo-font';
+import  LoginScreenView  from './login/[id]';
+import SignupScreen from './signup/[id]';
+import Home from './index';
+import ControlScreen from './control/[id]';
+import { COLORS } from '../constants';
+import { Stack } from 'expo-router';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -15,7 +20,6 @@ const Layout = () => {
 
     const onLayoutRootView = useCallback(async () => {
         if (fontsLoaded) {
-            // Fontlar yüklendiğinde SplashScreen'i gizle
             await SplashScreen.hideAsync();
         }
     }, [fontsLoaded]);
@@ -24,9 +28,52 @@ const Layout = () => {
         onLayoutRootView();
     }, [onLayoutRootView]);
 
-    if (!fontsLoaded) return null; // Fontlar yüklenene kadar null dönerek beklet
+    if (!fontsLoaded) return null; 
 
-    return <Stack onLayout={onLayoutRootView} />;
+    return (
+        <Stack>
+   
+            <Stack.Screen name="login/[id]" options={{
+                headerTitle:"Login",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+            }}/>
+            <Stack.Screen name="index"  options={{
+                headerTitle:"Home Page",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+
+            }} />
+            <Stack.Screen name="control/[id]"  options={{
+                headerTitle:"Controller",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+
+            }} />
+            <Stack.Screen name="signup/[id]"  options={{
+                headerTitle:"Sign Up",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+
+            }} />
+            <Stack.Screen name="main/[user]"  options={{
+                headerTitle:"Main",
+                headerStyle:{
+                    backgroundColor:COLORS.softpurple,
+                }
+                
+
+            }} />
+        </Stack>
+    );
 };
 
 export default Layout;

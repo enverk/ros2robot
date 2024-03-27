@@ -23,6 +23,7 @@ setup(
             "listener= my_robot_controller.listener:main",
             "talker= my_robot_controller.talker:main",
             "cam_sub=my_robot_controller.cam_sub:main",
+            "cam_pub=my_robot_controller.cam_pub:main",
         ],
     },
 )

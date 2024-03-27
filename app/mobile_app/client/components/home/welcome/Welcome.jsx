@@ -9,16 +9,14 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import styles from './welcome.style';
-import { Link } from 'expo-router';
-import { icons } from '../../../constants';
-import { useNavigation } from '@react-navigation/native';
+import { SIZES } from '../../../constants';
 
 
 const Welcome = () => {
   const router = useRouter();
   const [activeJobType, setActiveJobType] = useState('TurtleBot');
-  const [brokerip, setBrokerIP] = useState(''); 
-  const navigation = useNavigation();
+  const [brokerip, setBrokerIP] = useState('');
+  
 
   const sendIPToServer = async () => {
     try {
@@ -27,14 +25,15 @@ const Welcome = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ brokerip }), 
+        body: JSON.stringify({ brokerip }),
       });
 
       if (response.ok) {
         const result = await response.json();
         console.log('IP Address sent successfully:', result);
         Alert.alert('Success', 'IP Address has been sent successfully!');
-            
+        router.push('/control/[id]')
+
       } else {
         const error = await response.text();
         throw new Error(error);
@@ -46,9 +45,15 @@ const Welcome = () => {
   };
 
   return (
-    <View>
+    <View  style={
+      {
+          flex: 1,
+          padding: SIZES.large
+      }
+  }>
+   
       <View style={styles.container}>
-        
+
         <Text style={styles.welcomeMessage}>Please write the IP Address of the robot you want to use</Text>
       </View>
       <View style={styles.searchContainer}>
@@ -56,21 +61,16 @@ const Welcome = () => {
           <TextInput
             style={styles.searchInput}
             value={brokerip}
-            onChangeText={setBrokerIP} 
+            onChangeText={setBrokerIP}
             placeholder='Please write your tcp IP of your broker'
           />
         </View>
-       
+
       </View>
-      
-      <TouchableOpacity style={styles.searchBtn} onPress={()=>{sendIPToServer
-      router.push('/control/[id]')}
-        }>
-      
-          <Text style={styles.searchBtnText}>Connect</Text>
-          
-        </TouchableOpacity>
-       
+      <TouchableOpacity style={styles.searchBtn} onPress={router.push('/control/[id]')} >
+        <Text style={styles.searchBtnText}>Connect</Text>
+      </TouchableOpacity>
+
     </View>
   );
 };

@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
   },
+  buttonContainer: {
+    width: "100%",
+    height:"20%"
+    
+  },
   userName: {
     fontFamily: FONT.regular,
     fontSize: SIZES.large,
@@ -14,7 +19,7 @@ const styles = StyleSheet.create({
   welcomeMessage: {
     fontFamily: FONT.bold,
     fontSize: SIZES.xLarge,
-    color: COLORS.primary,
+    color: COLORS.lightWhite,
     marginTop: 2,
   },
   searchContainer: {
@@ -44,10 +49,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  loginBtn: {
+    width: "50%",
+    height: "20%",
+    backgroundColor: COLORS.softpurple,
+    borderRadius: SIZES.xLarge,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection:'row',
+  },
+  
   searchBtn: {
     width: "100%",
-    height: "20%",
-    backgroundColor: COLORS.tertiary,
+    height: "10%",
+    backgroundColor: COLORS.softpurple,
     borderRadius: SIZES.xLarge,
     justifyContent: "center",
     alignItems: "center",
@@ -68,10 +83,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: activeJobType === item ? COLORS.secondary : COLORS.gray2,
   }),
-  tabText: (activeJobType, item) => ({
+  tabText: {
     fontFamily: FONT.medium,
-    color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
-  }),
+    fontSize:17,
+    color: COLORS.white,
+  },
 });
 
 export default styles;

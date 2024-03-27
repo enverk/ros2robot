@@ -4,10 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 
 import nipplejs from 'nipplejs';
+<<<<<<< HEAD
 import './style.css';
 import Camera from './camera'; 
 import Navigation from './navigasyon'; 
 
+=======
+import './style.css'
+import VideoStreamDisplay from './video_capture'
+>>>>>>> dbc3dcc7713b671794e1de006f2373990833e89a
 export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve
 
 function App() {
@@ -84,7 +89,18 @@ function App() {
 
 
       
+<<<<<<< HEAD
       <Camera />
+=======
+      <div className="form-container3">
+
+          <div className="form-camera">
+              <VideoStreamDisplay/>  
+        
+          </div>
+          <div ref={containerRef} className='joystick' />
+      </div>
+>>>>>>> dbc3dcc7713b671794e1de006f2373990833e89a
 
       <div className="form-container3">
         <div ref={containerRef} className='joystick' />
