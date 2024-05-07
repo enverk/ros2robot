@@ -1,18 +1,17 @@
-# ROS2 istemci kütüphanelerini dahil edip gerekli nesneler isimlendirilmektedir.
+# Importing ROS2 and Required Libraries
 import rclpy
 import numpy
 import math
 from rclpy.node import Node
 from serial import Serial
 
-# ROS2 içerisinde bulunan yada proje amaçlı oluşturulan mesaj türleri kaynak koda tanıtılmaktadır.
+# Importing ROS2 Message Objects to Use
 from std_msgs.msg import String
 from sensor_msgs.msg import Imu
 
 
-# ROS2 içerisinde bir Node(Düğüm) Nesnesi oluşturularak gerekli nitelikler eklenmektedir.
-# Bu kaynak kodunda iki tane yayıncı yazılımı gerçekleştirilerek,
-# farklı düğümlerin farklı yayınları dinlemesi amaçlanmaktadır.
+# Creating a Class for the ROS2 Node that Listens to the Motion Information Coming from ROS2,
+# Calculates the Motor Speeds and Transfers it to Arduino via Serial Communication
 class Serial_Node_Read_Imu(Node):
     def __init__(self):
         super().__init__("Serial_Node_Read_Imu")

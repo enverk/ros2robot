@@ -1,26 +1,31 @@
+# Importing ROS2 and Required Libraries
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
 from serial import Serial
 import math
 from time import sleep
 from decimal import Decimal
 
+# Importing ROS2 Message Objects to Use
+from std_msgs.msg import String
 
+# Creating a Class for the ROS2 Node that Listens to the Motion Information Coming from ROS2,
+# Calculates the Motor Speeds and Transfers it to Arduino via Serial Communication
 class Serial_Node_Write_Motor(Node):
     def __init__(self):
         super().__init__("Serial_Node_Write_Motor")
+
+        # Creating a Serial Object to Communicate with Arduino
         self.ser = Serial("/dev/ttyUSB0", 115200, timeout=0.009)
         self.get_logger().info(self.ser.readline())
-        self.left_speed = 10000
-        self.right_speed = 10000
 
-        # Bu kod satırında dinleyicinin hangi mesaj türünü ve hangi isimi dinlediğini belirterek,
-        # dinleme gerçekleştiğinde hangi fonksiyonu çalıştıracağı belirtilmektedir.
+        # Determining Which Topic to Subscribe to in the ROS2 Network and
+        # Determining Which Function to Run When Broadcasting
         self.subscription_motor = self.create_subscription(
             String, "serial_motor", self.listener_callback_subscription_motor, 2
         )
 
+        # 
         self.timer_serial_get = self.create_timer(0.1, self.serial_get)
 
     # Dinleme gerçekleştiğinde çalışan fonksiyonun gerçekleştireceği eylemlerin bulunduğu fonksiyon.
@@ -70,7 +75,7 @@ class Serial_Node_Write_Motor(Node):
 
     def serial_get(self):
         if self.ser.in_waiting:
-            self.get_logger().info("Alinan: " + str(self.ser.readline().rstrip()))
+            self.get_logger().info("I Heard: " + str(self.ser.readline().rstrip()))
 
 
 def main(args=None):
