@@ -11,9 +11,11 @@ unsigned long previous_motor_time_left = micros();
 int motor_period_left, motor_period_right;
 
 void setup() {
+  //Comunication begin
   Serial.begin(115200);
-  Serial.println("Ready");
+  //Serial.println("Ready");
 
+  //Settings Motor Driver Pins
   pinMode(right_enable, OUTPUT);
   pinMode(right_direction, OUTPUT);
   pinMode(right_pwm, OUTPUT);
@@ -21,6 +23,7 @@ void setup() {
   pinMode(left_direction, OUTPUT);
   pinMode(left_pwm, OUTPUT);
 
+  //Config Starting Settings
   digitalWrite(right_enable, LOW);
   digitalWrite(right_direction, LOW);
   digitalWrite(right_pwm, LOW);
@@ -30,13 +33,16 @@ void setup() {
 }
 
 void loop() {
+  //Cheking Serial Values
   if (Serial.available()) {
     String komut_motor;
     while (Serial.available()) {
       komut_motor += char(Serial.read());
       delayMicroseconds(90);
     }
-    Serial.println(komut_motor);
+
+    //Motor Speeds and Directions Set 
+    //Serial.println(komut_motor);
     motor_period_left = komut_motor.substring(0, komut_motor.indexOf(',')).toInt();
     motor_period_right = komut_motor.substring(komut_motor.indexOf(',') + 1).toInt();
     rotation();
@@ -46,6 +52,8 @@ void loop() {
   move();
 }
 
+
+//Set the Motor Drivers Directions
 void rotation() {
   if (motor_period_left < 0) {
     motor_period_left *= -1;
@@ -62,27 +70,31 @@ void rotation() {
   }
 }
 
+//Chechking and Moving Motors with Values
 void move() {
   unsigned long current_time = micros();
 
+  //Left Motor Controll
   if (motor_period_left == 10000)
     digitalWrite(left_enable, HIGH);
-    digitalWrite(left_pwm, LOW);
+  digitalWrite(left_pwm, LOW);
   else if (current_time - previous_motor_time_left > motor_period_left) {
     digitalWrite(left_enable, LOW);
     digitalWrite(left_pwm, HIGH);
     previous_motor_time_left = current_time;
   }
 
+  //Right Motor Controll
   if (motor_period_right == 10000)
     digitalWrite(right_enable, HIGH)
-    digitalWrite(right_pwm, LOW);
+      digitalWrite(right_pwm, LOW);
   else if (current_time - previous_motor_time_right > motor_period_right) {
     digitalWrite(right_enable, LOW);
     digitalWrite(right_pwm, HIGH);
     previous_motor_time_right = current_time;
   }
-  
+
+  //Deactive Motor Drivers Step Pins
   digitalWrite(right_pwm, LOW);
   digitalWrite(left_pwm, LOW);
 }
