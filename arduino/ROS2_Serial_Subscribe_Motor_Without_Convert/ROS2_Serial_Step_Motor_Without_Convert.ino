@@ -66,15 +66,19 @@ void move() {
   unsigned long current_time = micros();
 
   if (motor_period_left == 10000)
+    digitalWrite(left_enable, HIGH);
     digitalWrite(left_pwm, LOW);
   else if (current_time - previous_motor_time_left > motor_period_left) {
+    digitalWrite(left_enable, LOW);
     digitalWrite(left_pwm, HIGH);
     previous_motor_time_left = current_time;
   }
 
   if (motor_period_right == 10000)
+    digitalWrite(right_enable, HIGH)
     digitalWrite(right_pwm, LOW);
   else if (current_time - previous_motor_time_right > motor_period_right) {
+    digitalWrite(right_enable, LOW);
     digitalWrite(right_pwm, HIGH);
     previous_motor_time_right = current_time;
   }
