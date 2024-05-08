@@ -4,6 +4,7 @@ import rclpy
 import numpy
 from serial import Serial
 from rclpy.node import Node
+from decimal import Decimal
 
 # Importing ROS2 Message Objects to Use
 from std_msgs.msg import String
@@ -12,13 +13,19 @@ from sensor_msgs.msg import Imu
 
 # Creating a Class for the ROS2 Node that Listens to the Motion Information Coming from ROS2,
 # Calculates the Motor Speeds and Transfers it to Arduino via Serial Communication
-class Serial_Node_Read_Imu(Node):
+class Serial_Node_Final(Node):
     def __init__(self):
-        super().__init__("Serial_Node_Read_Imu")
+        super.__init__("Serial_Node_Final")
 
         # Creating a Serial Object to Communicate with Arduino
         self.ser = Serial("/dev/ttyUSB0", 115200, timeout=0.009)
         self.get_logger().info(self.ser.readline())
+
+        # Determining Which Topic to Subscribe to in the ROS2 Network and
+        # Determining Which Function to Run When Broadcasting
+        self.subscription_motor = self.create_subscription(
+            String, "serial_motor", self.listener_callback_subscription_motor, 2
+        )
 
         # Altta bulunan iki kod satırında yapılacak yayınların,
         # hangi mesaj türü ve hangi isim ile yayın yapılacakları belirlenmiştir.
@@ -27,6 +34,54 @@ class Serial_Node_Read_Imu(Node):
         self.timer_publisher_imu = self.create_timer(
             self.time_period_publisher_imu, self.timer_callback_publisher_imu
         )
+
+    # Function Executed When Data Comes from the Topic on ROS2
+    def listener_callback_subscription_motor(self, msg):
+        self.get_logger().info('I heard "%s"' % msg.data)
+        message = msg.data
+        x = Decimal(message[: message.index(",")])
+        y = Decimal(message[message.index(",") + 1 :])
+        left_value, right_value = self.convert(x, y)
+
+        if left_value < 0:
+            left_flag = True
+            left_value *= -1
+        else:
+            left_flag = False
+
+        if right_value < 0:
+            right_flag = True
+            right_value *= -1
+        else:
+            right_flag = False
+
+        self.left_speed = int(10000 - (left_value * 8325))
+        self.right_speed = int(10000 - (right_value * 8325))
+
+        if left_flag:
+            self.left_speed *= -1
+        if right_flag:
+            self.right_speed *= -1
+
+        self.serial_set()
+
+    # Conversion Function that Calculates the Joystick Coordinate Data,
+    # Right and Left Motors, Speeds and Directions Coming from ROS2
+    def convert(self, x, y):
+        r = math.hypot(x, y)
+        t = math.atan2(y, x)
+        t -= math.pi / 4
+        left = r * math.cos(t)
+        right = r * math.sin(t)
+        left = left * math.sqrt(2)
+        right = right * math.sqrt(2)
+        return left, right
+
+    # Function that Sends the Calculated Motor Speed ​​and Directions to Arduino via Serial Communication
+    def serial_set(self):
+        speed = str(self.left_speed) + "," + str(self.right_speed)
+        self.get_logger().info(speed)
+        self.ser.write(bytearray(speed, "ascii"))
 
     # Birinci yayıncının belirlenen periyotlarda ne yayınlayacağı belirtilmiştir.
     def timer_callback_publisher_imu(self):
@@ -79,15 +134,13 @@ class Serial_Node_Read_Imu(Node):
         return msg
 
 
-# Son olarak ana fonksiyon ve içerisinde yazılan Düğüme ait bir nesne oluşturulmuştur.
 def main(args=None):
     rclpy.init(args=args)
-    serial_node_read_imu = Serial_Node_Read_Imu()
-    rclpy.spin(serial_node_read_imu)
+    serial_node_final = Serial_Node_Final()
+    rclpy.spin(serial_node_final)
 
-    # Düğüm sonlandığında Düğüm silinmiştir.
-    serial_node_read_imu.ser.close()
-    serial_node_read_imu.destroy_node()
+    serial_node_final.ser.close()
+    serial_node_final.destroy_node()
     rclpy.shutdown()
 
 

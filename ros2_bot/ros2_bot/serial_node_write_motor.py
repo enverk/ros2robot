@@ -1,13 +1,13 @@
 # Importing ROS2 and Required Libraries
-import rclpy
-from rclpy.node import Node
-from serial import Serial
 import math
-from time import sleep
+import rclpy
+from serial import Serial
+from rclpy.node import Node
 from decimal import Decimal
 
 # Importing ROS2 Message Objects to Use
 from std_msgs.msg import String
+
 
 # Creating a Class for the ROS2 Node that Listens to the Motion Information Coming from ROS2,
 # Calculates the Motor Speeds and Transfers it to Arduino via Serial Communication
@@ -25,10 +25,11 @@ class Serial_Node_Write_Motor(Node):
             String, "serial_motor", self.listener_callback_subscription_motor, 2
         )
 
-        # 
+        # Creating a Timer for the Function to Be Run 10 Times a Second to
+        # Check Whether Any Data Arrives from Serial Communication
         self.timer_serial_get = self.create_timer(0.1, self.serial_get)
 
-    # Dinleme gerçekleştiğinde çalışan fonksiyonun gerçekleştireceği eylemlerin bulunduğu fonksiyon.
+    # Function Executed When Data Comes from the Topic on ROS2
     def listener_callback_subscription_motor(self, msg):
         self.get_logger().info('I heard "%s"' % msg.data)
         message = msg.data
@@ -58,6 +59,8 @@ class Serial_Node_Write_Motor(Node):
 
         self.serial_set()
 
+    # Conversion Function that Calculates the Joystick Coordinate Data,
+    # Right and Left Motors, Speeds and Directions Coming from ROS2
     def convert(self, x, y):
         r = math.hypot(x, y)
         t = math.atan2(y, x)
@@ -68,23 +71,25 @@ class Serial_Node_Write_Motor(Node):
         right = right * math.sqrt(2)
         return left, right
 
+    # Function that Sends the Calculated Motor Speed ​​and Directions to Arduino via Serial Communication
     def serial_set(self):
         speed = str(self.left_speed) + "," + str(self.right_speed)
         self.get_logger().info(speed)
         self.ser.write(bytearray(speed, "ascii"))
 
+    # Function That Reads and Informs Data When Data Comes from Arduino via Serial Communication
     def serial_get(self):
         if self.ser.in_waiting:
-            self.get_logger().info("I Heard: " + str(self.ser.readline().rstrip()))
+            self.get_logger().info("I Heard: " + self.ser.readline().rstrip())
 
 
 def main(args=None):
-    print("Hi from ros2_bot.")
+    # Creating and Running a ROS2 Node
     rclpy.init(args=args)
     serial_node_write_motor = Serial_Node_Write_Motor()
     rclpy.spin(serial_node_write_motor)
 
-    # Düğüm sonlandığında Düğüm silinmiştir.
+    # Destruction of ROS2 and Serial Communication Objects
     serial_node_write_motor.ser.close()
     serial_node_write_motor.destroy_node()
     rclpy.shutdown()
