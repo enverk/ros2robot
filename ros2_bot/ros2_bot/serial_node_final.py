@@ -15,7 +15,7 @@ from sensor_msgs.msg import Imu
 # Calculates the Motor Speeds and Transfers it to Arduino via Serial Communication
 class Serial_Node_Final(Node):
     def __init__(self):
-        super.__init__("Serial_Node_Final")
+        super().__init__("Serial_Node_Final")
 
         # Creating a Serial Object to Communicate with Arduino
         self.ser = Serial("/dev/ttyUSB0", 115200, timeout=0.009)
