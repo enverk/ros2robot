@@ -56,8 +56,8 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             distance_x_normalized = (shoulder_midpoint_x / frame.shape[1] - center_x / frame.shape[1]) * 2
             distance_y_normalized = (center_y / frame.shape[0] - shoulder_midpoint_y / frame.shape[0]) * 2
 
-            a = 0.3 - shoulder_width * distance_x_normalized
-            b = 0.3 - shoulder_width * distance_y_normalized
+            a = (0.3 - shoulder_width) * distance_x_normalized
+            b = (0.3 - shoulder_width) * distance_y_normalized
 
             print("Distance along X axis:", distance_x_normalized)
             print("Distance along Y axis:", distance_y_normalized)
