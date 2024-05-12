@@ -2,21 +2,9 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { GoogleLogin } from 'react-google-login';
+
 import { useRouter } from 'next/navigation';
 import './style.css';
-import { STATUS_CODES } from "http";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBIcon
-}
-from 'mdb-react-ui-kit';
 
 
 function page() {
@@ -94,11 +82,7 @@ function page() {
           </form>
         </div>
         <br />
-        <GoogleLogin
-          clientId="481729939558-s74nks3clojfdup270nsmst09be3jcl0.apps.googleusercontent.com"
-          onSuccess={LoginSuccess}
-          onFailure={LoginFail}
-        />
+        
 
       </div>
     </div>

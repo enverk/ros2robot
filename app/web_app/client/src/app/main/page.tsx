@@ -8,6 +8,8 @@ import './style.css';
 import Camera from './camera'; 
 import Navigation from './navigasyon'; 
 
+
+import VideoStreamDisplay from './video_capture'
 export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve
 
 function App() {
@@ -18,8 +20,6 @@ function App() {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
-  
 
   useEffect(() => {
     if (containerRef.current) {
@@ -86,14 +86,16 @@ function App() {
 
 
       
-      {/* <Camera /> */}
+      
+     <Camera/>
+      
 
       <div className="form-container3">
         <div ref={containerRef} className='joystick' />
       </div>
 
       
-      {/* <Navigation /> */}
+      <Navigation />
     </div>
   );
 }

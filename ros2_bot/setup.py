@@ -22,7 +22,10 @@ setup(
         'console_scripts': [
             'serial_motor_node = ros2_bot.serial_motor_node:main',
             'serial_motor_node_test = ros2_bot.serial_motor_node_test:main',
-            'serial_motor_node_convert = ros2_bot.serial_motor_node_convert:main'
+            'serial_motor_node_convert = ros2_bot.serial_motor_node_convert:main',
+            'serial_node_write_motor = ros2_bot.serial_node_write_motor:main',
+            'serial_node_read_imu = ros2_bot.serial_node_read_imu:main',
+            'serial_node_final = ros2_bot.serial_node_final:main'
         ],
     },
 )

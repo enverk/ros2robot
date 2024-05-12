@@ -68,7 +68,7 @@ class Serial_Motor_Node(Node):
         self.ser.write(bytearray(speed, "ascii"))
 
     def serial_get(self):
-        sleep(.01)
+        sleep(0.01)
         self.get_logger().info("Alinan: " + str(self.ser.readline().rstrip()))
 
 
