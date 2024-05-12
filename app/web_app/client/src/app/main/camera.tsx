@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { ENDPOINT } from './page'; // Ana uygulamadan ENDPOINT sabitini alıyoruz
+import io from 'socket.io-client'; // socket.io-client'ı import ediyoruz
 
-const Camera: React.FC = () => {
-  /*const videoRef = useRef<HTMLVideoElement | null>(null);
+const Camera = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     // socket.io-client ile belirtilen adrese bağlanıyoruz
