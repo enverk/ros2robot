@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { ENDPOINT } from './page'; // Ana uygulamadan ENDPOINT sabitini alıyoruz
 
 const Camera: React.FC = () => {
-  /*const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const socket = new WebSocket(ENDPOINT);
@@ -35,12 +35,8 @@ const Camera: React.FC = () => {
         
       <video ref={videoRef} autoPlay />
     </div>
-  );*/
-  return (
-    <div className="form-camera">
-      {}
-    </div>
   );
+ 
 };
 
 export default Camera;

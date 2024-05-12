@@ -1,41 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import io from 'socket.io-client';
 
 const VideoStreamDisplay = () => {
-  const [imageSrc, setImageSrc] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null); 
 
   useEffect(() => {
-    const ws = new WebSocket('ws://10.0.2.2:3002');
+    const socket = io('http://192.168.163.135:3002');
 
-    ws.onopen = () => {
-      console.log('WebSocket connection established');
-    };
+    socket.on('connect', () => {
+      console.log('Socket.IO connection established');
+    });
 
-    ws.onmessage = (e) => {
-      // Burada gelen veri direkt olarak base64 formatında bir JPEG görüntüsüdür.
-      setImageSrc(`data:image/jpeg;base64,${e.data}`);
-    };
+    socket.on('video_frame', (data) => {
+      setImageSrc(`data:image/jpeg;base64,${data.data}`);
+    });
 
-    ws.onerror = (e) => {
-      console.error('WebSocket error:', e.message);
-    };
-
-    ws.onclose = () => {
-      console.log('WebSocket connection closed');
-    };
+    socket.on('connect_error', (error) => {
+      console.error('Socket.IO connection error:', error);
+    });
 
     return () => {
-      ws.close();
+      socket.disconnect();
     };
   }, []);
 
   return (
     <View style={styles.container}>
-      {imageSrc ? (
-        <Image source={{ uri: imageSrc }} style={styles.image} />
-      ) : (
-        <Text>Loading...</Text>
+      {imageSrc && (
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: imageSrc }} style={styles.image}  resizeMode='cover' />
+          
+        </View>
       )}
+      {!imageSrc && <Text>Loading...</Text>}
     </View>
   );
 };
@@ -43,12 +41,18 @@ const VideoStreamDisplay = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  image: {
+  imageContainer: {
+    position: 'relative',
     width: 300,
     height: 300,
+  },
+  image: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
   },
 });
 
