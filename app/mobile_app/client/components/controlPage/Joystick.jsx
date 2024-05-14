@@ -4,7 +4,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ReactNativeJoystick } from '@korsolutions/react-native-joystick';
 import styles from './joystick.style';
 
-// x ve y değerlerini ölçeklendirme fonksiyonu
 function scaleValue(oldValue, oldMin, oldMax, newMin, newMax) {
   return ((oldValue - oldMin) * (newMax - newMin) / (oldMax - oldMin)) + newMin;
 }
