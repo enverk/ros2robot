@@ -5,18 +5,6 @@ import { useForm } from "react-hook-form";
 
 import { useRouter } from 'next/navigation';
 import './style.css';
-import { STATUS_CODES } from "http";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBIcon
-}
-from 'mdb-react-ui-kit';
 
 
 function page() {
