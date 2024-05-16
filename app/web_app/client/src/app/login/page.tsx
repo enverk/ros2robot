@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { GoogleLogin } from 'react-google-login';
+
 import { useRouter } from 'next/navigation';
 import './style.css';
 import { STATUS_CODES } from "http";
@@ -65,7 +65,7 @@ function page() {
     <div className="main">
       <div className="mainContainer">
         <div className="titleContainer">
-          <div>Kullanıcı Girişi</div>
+          <div>User Login</div>
         </div>
         <br />
         <hr />
@@ -87,18 +87,14 @@ function page() {
                 onChange={(e) => setPassword(e.target.value)} />
             </div>
             <br />
-            <button type="submit" className="inputButton">Giriş Yap</button>
+            <button type="submit" className="inputButton">Sign in</button>
             <a href="/signup" className="a">
-              Üye ol
+            Sign up
             </a>
           </form>
         </div>
         <br />
-        <GoogleLogin
-          clientId="481729939558-s74nks3clojfdup270nsmst09be3jcl0.apps.googleusercontent.com"
-          onSuccess={LoginSuccess}
-          onFailure={LoginFail}
-        />
+        
 
       </div>
     </div>

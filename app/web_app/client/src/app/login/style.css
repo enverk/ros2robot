@@ -3,7 +3,7 @@ body {
   }
   
 .main{
-  /*background-image: url("https://img.freepik.com/free-vector/gradient-technological-background_23-2148884155.jpg?w=1380&t=st=1709717762~exp=1709718362~hmac=215f1fb2d9c3a84aa5f63412ae9b9c7ddee25ccc2eadb98bfeaadce741f4070c"); */
+  
   background: #302E59;
   display: flex;
     flex-direction: column;
