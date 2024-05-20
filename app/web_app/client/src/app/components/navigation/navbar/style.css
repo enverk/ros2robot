@@ -1,0 +1,112 @@
+/* Genel stil */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navbar container */
+  .navbar {
+    background-color: #202140;
+    padding: 10px 20px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Brand styling */
+  .brand {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* Menu icon for mobile */
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    color: #ffffff;
+  }
+  
+  /* Menu styling */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menu-item {
+    color: #ffffff;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-item:hover {
+    background-color: #302E59;
+  }
+  
+  /* Menu open state */
+  .menu.open {
+    display: block;
+  }
+  
+  /* Responsive styles */
+  @media (min-width: 768px) {
+    .menu {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  
+    .menu-list {
+      flex-direction: row;
+    }
+  
+    .menu-icon {
+      display: none;
+    }
+  
+    .menu {
+      display: flex;
+    }
+  
+    .menu-item {
+      padding: 10px 20px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .menu-icon {
+      display: block;
+    }
+  
+    .menu {
+      display: none;
+    }
+  
+    .menu.open {
+      display: flex;
+    }
+  }
+  

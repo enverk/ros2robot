@@ -7,6 +7,7 @@ import './style.css';
 import Camera from './camera'; 
 import Navigation from './navigasyon';
 import { Dropdown } from "flowbite-react";
+import Navbar from '../components/navigation/navbar';
 import VideoStreamDisplay from './video_capture';
 
 export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve
@@ -32,11 +33,55 @@ function App() {
       });
 
       manager.on('move', (evt, data) => {
-        // ...
+        const angleInRadians = data.angle.radian;
+        const force = data.force;
+        // x ve y koordinatlarını hesapla
+        const x = force * Math.cos(angleInRadians);
+        const y = force * Math.sin(angleInRadians);
+
+        // Hesaplanan x ve y değerlerini ve diğer bilgileri backend'e gönder
+        fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            type: "move",
+            x: x,
+            y: y,
+            direction: data.direction.angle,
+            force: data.force,
+            distance: data.distance,
+            angle: data.angle.degree,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => console.log('POST success:', data))
+        .catch(error => console.error('POST error:', error));
       });
 
-      manager.on('end', () => {
-        // ...
+       manager.on('end', () => {
+        // Joystick bırakıldığında backend'e bir istek gönder
+        fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            type: "stop",
+            x: null,
+            y: null,
+            direction: null,
+            force: null,
+            distance: null,
+            angle: null,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => console.log('POST success:', data))
+        .catch(error => console.error('POST error:', error));
+
+        console.log('Joystick bırakıldı');
       });
 
       return () => {
@@ -46,8 +91,20 @@ function App() {
   }, []);
 
   const onSubmit = (data: any) => {
-    console.log(data.brokerip);
-    setIsConnected(true); // Set connected state to true
+    fetch("http://localhost:3001/main/broker", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {});
+
+      console.log(data);
+      setIsConnected(true); 
+    //istek 200 dönerse setisconnected true
   };
 
   const handleDisconnect = () => {
@@ -59,7 +116,10 @@ function App() {
   };
 
   return (
+    
     <div>
+      <Navbar />
+      
       <div className="form-container1">
         <div className="dropdown">
           <Dropdown label="" dismissOnClick={false} className="dropdown-button">
