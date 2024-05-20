@@ -13,7 +13,9 @@ import homeIcon from '../assets/icons/home.png';
 import profileIcon from '../assets/icons/profile.png';
 import filterIcon from '../assets/icons/filter.png'
 import qrIcon from '../assets/icons/qr-code.png'
+import RobotIcon from '../assets/icons/robot.png'
 import { COLORS,FONT,SIZES } from '../constants/theme';
+import RobotsScreen from '../screens/Robots';
 
 type TabParamList = {
   Anasayfa: undefined;
@@ -22,6 +24,7 @@ type TabParamList = {
   Kontrol:undefined;
   QRCode:undefined;
   Login:undefined;
+  Robotlar:undefined;
 };
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -63,6 +66,15 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({focused, color}) => <Image source={qrIcon} style={{width: 30, height: 30, tintColor: color}} />
         }}
+      /> 
+      <Tab.Screen 
+        name="Robotlar" 
+        component={RobotsScreen} 
+        options={{
+          headerShown:false,
+          tabBarIcon: ({focused, color}) => <Image source={RobotIcon} style={{width: 30, height: 30, tintColor: color}}  />
+        }}
+        
       /> 
 
       <Tab.Screen 
