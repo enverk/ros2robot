@@ -53,7 +53,7 @@ function page() {
     <div className="main">
       <div className="mainContainer">
         <div className="titleContainer">
-          <div>Kullanıcı Girişi</div>
+          <div>User Login</div>
         </div>
         <br />
         <hr />
@@ -75,9 +75,9 @@ function page() {
                 onChange={(e) => setPassword(e.target.value)} />
             </div>
             <br />
-            <button type="submit" className="inputButton">Giriş Yap</button>
+            <button type="submit" className="inputButton">Sign in</button>
             <a href="/signup" className="a">
-              Üye ol
+            Sign up
             </a>
           </form>
         </div>

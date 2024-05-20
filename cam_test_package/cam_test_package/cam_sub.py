@@ -12,7 +12,7 @@ class ImageSubscriber(Node):
     def __init__(self):
         super().__init__("cam_sub")
         self.sub_cam_ = self.create_subscription(
-            Image, "video_frames", self.listener_callback_cam, 1
+            Image, "camera/image_raw", self.listener_callback_cam, 1
         )
         self.sub_qr_ = self.create_subscription(
             String, "data_frame", self.listener_callback_data, 20

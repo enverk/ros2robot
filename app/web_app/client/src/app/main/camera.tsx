@@ -33,9 +33,14 @@ const Camera = () => {
   return (
     <div className="form-camera">
       <video ref={videoRef} autoPlay />
+      <img 
+         src="" 
+         alt="kamera" 
+         
+       />
     </div>
   );
  
 };
 
-export default Camera;
+export default Camera;
