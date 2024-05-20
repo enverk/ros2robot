@@ -29,8 +29,7 @@ func (a *AuthRoute) Login(c echo.Context) error {
 	email := logReq.Email
 	password := logReq.Password
 
-	fmt.Println(email)
-	fmt.Println(password)
+	
 
 	user, err := middlewares.Authenticate(&a.Client, email, password)
 
@@ -59,4 +58,33 @@ func (a *AuthRoute) Login(c echo.Context) error {
 }
 func LoginPage(c echo.Context) error {
 	return c.String(http.StatusOK, "Welcome To Login Page")
+}
+
+func  (a *AuthRoute) MobileLogin (c echo.Context) error {
+	var logReq LoginRequest
+
+	if err := c.Bind(&logReq); err != nil {
+		return err
+	}
+	email := logReq.Email
+	password := logReq.Password
+
+	fmt.Println(email)
+	fmt.Println(password)
+
+	user, err := middlewares.Authenticate(&a.Client, email, password)
+	if err != nil {
+		return echo.ErrInternalServerError
+	}
+	
+	mobileAccessToken, err := middlewares.GenerateMobileToken(user)
+	if err != nil {
+		return echo.ErrInternalServerError
+	}
+	
+	c.Response().Header().Set("Authorization", "Bearer "+mobileAccessToken)
+
+	return c.JSON(http.StatusOK, echo.Map{
+		"mobile_token":  mobileAccessToken,
+	})
 }

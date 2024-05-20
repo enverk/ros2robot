@@ -27,6 +27,22 @@ func GenerateToken(user *domains.User) (string, error) {
 	return accessToken, nil
 
 }
+func GenerateMobileToken(user *domains.User) (string, error) {
+	claims := jwt.MapClaims{
+		"sub":   1,
+		"email": user.Email,
+		"exp":   time.Now().Add(time.Hour * 8760).Unix(),
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	mobileAccessToken, err := token.SignedString(jwtKey)
+
+	if err != nil {
+		return "", err
+	}
+	return mobileAccessToken, nil
+
+}
 
 func GenerateRefreshToken(user *domains.User) (string, error) {
 	claims := jwt.MapClaims{

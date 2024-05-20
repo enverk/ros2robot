@@ -11,7 +11,7 @@ import (
 
 func New(client *databases.Mongo) *echo.Echo {
 	e := echo.New()
-	//TODO: Buraya restricted arealar eklenecek.
+
 	r := AuthRoute{
 		Client: *client,
 	}
@@ -23,18 +23,21 @@ func New(client *databases.Mongo) *echo.Echo {
 	}))
 	e.POST("/main/broker", handlers.BrokerHandler)
 	e.POST("/login", r.Login)
+	e.POST("/mobile/login", r.MobileLogin)
 
 	e.POST("/main/joystick", handlers.JoystickHandler)
 	e.POST("/signup", SignUpHandler(client))
 
+	e.GET("/userinfo", UserHandler(client), middlewares.Authorize)
+
 	MainGroup(mainGroup)
-	
+
 	return e
-	
+
 }
 
 func MainGroup(g *echo.Group) {
-    
-    g.Use(middlewares.Authorize)   
-    g.GET("/main", MainPage)
+
+	g.Use(middlewares.Authorize)
+	g.GET("/main", MainPage)
 }
