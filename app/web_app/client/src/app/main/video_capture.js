@@ -6,9 +6,7 @@ const VideoStreamDisplay = () => {
   useEffect(() => {
     const fetchVideoFrame = async () => {
       try {
-        const response = await fetch("http://192.168.1.106:3001/video_frame");
-        const data = await response.blob();
-        const reader = new FileReader();
+        const response = await fetch("http://192.168.1.106:3002");
         reader.onload = () => {
           setImageSrc(reader.result);
         };

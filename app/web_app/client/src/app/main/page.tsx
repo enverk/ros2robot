@@ -9,6 +9,7 @@ import Navigation from './navigasyon';
 import { Dropdown } from "flowbite-react";
 import Navbar from '../components/navigation/navbar';
 import VideoStreamDisplay from './video_capture';
+import WebSocketImageDisplay from './camera';
 
 export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve
 
@@ -35,11 +36,9 @@ function App() {
       manager.on('move', (evt, data) => {
         const angleInRadians = data.angle.radian;
         const force = data.force;
-        // x ve y koordinatlarını hesapla
         const x = force * Math.cos(angleInRadians);
         const y = force * Math.sin(angleInRadians);
 
-        // Hesaplanan x ve y değerlerini ve diğer bilgileri backend'e gönder
         fetch(ENDPOINT, {
           method: 'POST',
           headers: {
@@ -131,7 +130,7 @@ function App() {
       </div>
       
       <div className="form-container3">
-        <Camera />
+        <WebSocketImageDisplay />
         <div ref={containerRef} className='joystick' />
         <Navigation />
       </div>
