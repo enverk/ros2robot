@@ -22,7 +22,7 @@ const VideoStreamDisplay = () => {
   }, [socket]);
 
   const handleStart = () => {
-    const newSocket = io('http://192.168.43.157:3002');
+    const newSocket = io('http://192.168.43.225:3002');
     setSocket(newSocket);
     setIsStreaming(true);
 
