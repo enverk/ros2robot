@@ -1,40 +1,32 @@
 "use client";
 
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/navigation';
 import './style.css';
-import { STATUS_CODES } from "http";
+import { signup } from "../services/signupService";
 
 
 function page() {
   const { register, handleSubmit } = useForm();
   const router = useRouter()
+  const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = (data: any) => {
-    fetch("http://localhost:3001/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-      body: JSON.stringify(data),
-    })
-    .then((response) => {
-      if (response.ok) {
-        console.log("Kayıt başarılı!");
-        // Kayıt başarılıysa giriş sayfasına yönlendirme yapabilirsiniz.
-        window.location.href = "/login";
-      } else {
-        console.error("Kayıt başarısız!");
-      }
-    })
-    .catch((error) => {
-      // Hata durumunda
-      console.error('Error:', error);
-    });
-  
+  const onSubmit = async (data: any) => {
+    try {
+      await signup(data.email, data.name, data.surname, data.password);
+      setSuccessMessage('Kayıt işlemi başarıyla tamamlandı. Lütfen giriş yapın.');
+      setTimeout(() => {
+        router.push('/login');
+      }, 3000); 
+    } catch (err) {
+      setErrorMessage('Kayıt işlemi başarısız. Lütfen tekrar deneyin.');
+    }
   };
+
 
   return (
     <div className="main">
@@ -70,8 +62,9 @@ function page() {
             className="inputBox"/>
           </div>
           <br />
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <button type="submit" className="inputButton" >Kayıt ol</button>
-
+          <a href="/login" className="a">Giriş Yap</a>
         </form>
       </div>
       
