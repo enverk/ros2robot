@@ -66,22 +66,18 @@ const Navigation = () => {
                         </li>
                         <li>
                           <Link href="signout" className="submenu-item">
-                            Sign out
+                            a
                           </Link>
                         </li>
                       </ul>
                     )}
                   </li>
-                  <li>
-                    <Link href="/robots/add" className="submenu-item">
-                      Robot Ekle
-                    </Link>
-                  </li>
+                  
                 </ul>
               )}
             </li>
             <li>
-              <Link href="/profile" className="menu-item">
+              <Link href="/profil" className="menu-item">
                 Profil
               </Link>
             </li>
