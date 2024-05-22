@@ -9,13 +9,14 @@ import (
 )
 
 type JoystickData struct {
-	X float32 `json:"x"`
-	Y float32 `json:"y"`
+	X float64 `json:"x"`
+	Y float64 `json:"y"`
 }
 
 func JoystickHandler(c echo.Context) error {
 
 	var jData JoystickData
+	
 	if err := c.Bind(&jData); err != nil {
 		return err
 	}
