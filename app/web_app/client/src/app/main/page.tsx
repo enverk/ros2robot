@@ -111,36 +111,13 @@ function App() {
     setIsConnected(false); // Set connected state to false
   };
 
-  const handleSignOut = () => {
-    window.location.href = '/login'; 
-  };
-
+  
   return (
     
     <div>
       <Navbar />
       
-      <div className="form-container1">
-        <div className="dropdown">
-          <Dropdown label="" dismissOnClick={false} className="dropdown-button">
-            <Dropdown.Item>
-              <a href="default.asp">turtlebot
-                <img src="https://assets-global.website-files.com/5f2b1efb0f881760ffdc5c96/62fcf07bbc1f7b5da918d2d4_P8rzh6b3jjUu4D7ty5FlnNpvIp4s3ybP50v2EuYKWOdikbn58RMZLqsM62lsNL4rzy7ST_PsqSFoajQb2F0EfjY6FDkmzqxqsoKTgH-swK_yZ8xxwO34WJovOpeLw-vpkRIlI3mulKY-7dpqAneGVwE.png" alt="" /></a>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <a href="settings" className="dropdown-link">Settings</a>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <a href="earnings" className="dropdown-link">Earnings</a>
-            </Dropdown.Item>
-            <Dropdown.Item>
-              <a href="signout" className="dropdown-link">Sign out</a>
-            </Dropdown.Item>
-          </Dropdown>
-        </div>  
-        <button className='inputButton' onClick={handleSignOut}>Sign out</button>
-      </div>
-
+      <br />
       <div className="form-container">
         <form onSubmit={handleSubmit(onSubmit)} className="form-right-aligned">
           <label htmlFor="ip-address-input">IP Address:</label>

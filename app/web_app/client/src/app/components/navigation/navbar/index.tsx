@@ -1,39 +1,38 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import './style.css';  // Kendi stil dosyanızı ekleyin
+import './style.css';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isRobotMenuOpen, setIsRobotMenuOpen] = useState(false);
+  const [isSelectRobotMenuOpen, setIsSelectRobotMenuOpen] = useState(false);
+
   const handleSignOut = () => {
-    window.location.href = '/login'; 
+    window.location.href = '/login';
   };
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleRobotMenu = () => {
+    setIsRobotMenuOpen(!isRobotMenuOpen);
+  };
+
+  const toggleSelectRobotMenu = (event:any) => {
+    event.stopPropagation();
+    setIsSelectRobotMenuOpen(!isSelectRobotMenuOpen);
   };
 
   return (
     <nav className="navbar">
       <div className="container">
-        <Link href="/" className="brand">
+        <Link href="/main" className="brand">
           Brand
+          
         </Link>
-        <div className="menu-icon" onClick={toggleMenu}>
-          <svg
-            className="icon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </div>
+       
         <div className={`menu ${isOpen ? "open" : ""}`}>
           <ul className="menu-list">
             <li>
@@ -41,19 +40,54 @@ const Navigation = () => {
                 Ana Sayfa
               </Link>
             </li>
-            <li>
-              <Link href="/about" className="menu-item">
-                Robotlar
-              </Link>
+            <li className="menu-item" onClick={toggleRobotMenu}>
+              Robotlar
+              {isRobotMenuOpen && (
+                <ul className="submenu">
+                  <li className="submenu-item" onClick={toggleSelectRobotMenu}>
+                    Robot Seç
+                    {isSelectRobotMenuOpen && (
+                      <ul className="submenu inner">
+                        <li>
+                          <Link href="default.asp" className="submenu-item">
+                            turtlebot
+                            
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="settings" className="submenu-item">
+                            Settings
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="earnings" className="submenu-item">
+                            Earnings
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="signout" className="submenu-item">
+                            Sign out
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                  <li>
+                    <Link href="/robots/add" className="submenu-item">
+                      Robot Ekle
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
             <li>
-              <Link href="/services" className="menu-item">
+              <Link href="/profile" className="menu-item">
                 Profil
               </Link>
             </li>
             <li>
               <button className="menu-item" onClick={handleSignOut}>
-               Çıkış
+                Çıkış
               </button>
             </li>
           </ul>

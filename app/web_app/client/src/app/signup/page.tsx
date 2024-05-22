@@ -40,7 +40,7 @@ function page() {
     <div className="main">
     <div className="mainContainer">
         <div className="titleContainer">
-        <div>Sign up</div>
+        <div>Kayıt</div>
       </div>
       <br />
       <hr />
@@ -58,7 +58,7 @@ function page() {
             className="inputBox"/>
           </div>
           <br />
-          <button type="submit" className="inputButton" >Sign up</button>
+          <button type="submit" className="inputButton" >Kayıt ol</button>
 
         </form>
       </div>

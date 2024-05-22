@@ -1,112 +1,113 @@
-/* Genel stil */
+/* Navbar container styling */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #202140; /* Navbar background color */
+  padding: 10px 20px; /* Padding */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.brand {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+.menu-icon {
+  display: none;
   
-  /* Navbar container */
-  .navbar {
-    background-color: #202140;
-    padding: 10px 20px;
-  }
+}
+
+.menu {
+  display: flex;
+}
+
+.menu-list {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  position: relative;
+  width: max-content;
   
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  /* Brand styling */
-  .brand {
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  /* Menu icon for mobile */
+}
+
+.menu-item:hover {
+  background-color: #302E59;
+  border-radius: 5px;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #202140;
+  min-width: 160px;
+  z-index: 1;
+  border-radius: 5px;
+  margin-top: 10px;
+  left: 0;
+}
+
+.menu-item:hover .submenu,
+.submenu-item:hover .submenu {
+  display: block;
+}
+
+.submenu-item {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+}
+
+.submenu-item:hover {
+  background-color: #302E59;
+  border-radius: 5px;
+}
+
+.submenu.inner {
+  left: 100%;
+  top: 0;
+}
+
+@media (max-width: 768px) {
   .menu-icon {
-    display: none;
-    cursor: pointer;
+    display: block;
   }
-  
-  .icon {
-    width: 24px;
-    height: 24px;
-    color: #ffffff;
-  }
-  
-  /* Menu styling */
+
   .menu {
-    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+    
   }
-  
+
   .menu-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
     flex-direction: column;
   }
-  
-  .menu-item {
-    color: #ffffff;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s;
+
+  .submenu {
+    position: static;
+    margin-top: 0;
   }
-  
-  .menu-item:hover {
-    background-color: #302E59;
+
+  .submenu.inner {
+    position: static;
   }
-  
-  /* Menu open state */
-  .menu.open {
-    display: block;
-  }
-  
-  /* Responsive styles */
-  @media (min-width: 768px) {
-    .menu {
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
-    }
-  
-    .menu-list {
-      flex-direction: row;
-    }
-  
-    .menu-icon {
-      display: none;
-    }
-  
-    .menu {
-      display: flex;
-    }
-  
-    .menu-item {
-      padding: 10px 20px;
-    }
-  }
-  
-  @media (max-width: 767px) {
-    .menu-icon {
-      display: block;
-    }
-  
-    .menu {
-      display: none;
-    }
-  
-    .menu.open {
-      display: flex;
-    }
-  }
-  
+}
