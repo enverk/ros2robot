@@ -53,8 +53,20 @@ function page() {
           </div>
           <br />
           <div className="inputContainer">
+            <input type="text" {...register("name")}
+            placeholder="Adınız"
+            className="inputBox" />
+          </div>
+          <br />
+          <div className="inputContainer">
+            <input type="text" {...register("surname")}
+            placeholder="Soyadınız"
+            className="inputBox" />
+          </div>
+          <br />
+          <div className="inputContainer">
             <input type="password" {...register("password")} 
-            placeholder="Password"
+            placeholder="Şifre"
             className="inputBox"/>
           </div>
           <br />
