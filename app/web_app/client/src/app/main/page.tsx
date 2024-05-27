@@ -37,13 +37,14 @@ function App() {
       <br />
       <div className="form-container">
         <form onSubmit={handleSubmit(onSubmit)} className="form-right-aligned">
-          <label htmlFor="ip-address-input">IP Address:</label>
-          <input type="text" {...register("brokerip")}
-            placeholder="Enter the broker ip."
-            className="inputBox" />
-          <br />
-          <button type="submit" className="inputButton" disabled={isConnected}>Send IP Address</button>
-          <button type="button" className="inputButton" onClick={handleDisconnect} disabled={!isConnected}>Disconnect</button>
+        <div className="form-group">
+            <label htmlFor="ip-address-input">IP Address:</label>
+            <input type="text" {...register("brokerip")} placeholder="Enter the broker ip." className="inputBox" />
+          </div>
+          <div className="form-group">
+            <button type="submit" className="inputButton" disabled={isConnected}>Send IP Address</button>
+            <button type="button" className="inputButton" onClick={handleDisconnect} disabled={!isConnected}>Disconnect</button>
+          </div>
         </form>
       </div>
       

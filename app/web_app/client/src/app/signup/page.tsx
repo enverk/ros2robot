@@ -64,7 +64,7 @@ function page() {
           <br />
           {error && <p style={{ color: 'red' }}>{error}</p>}
           <button type="submit" className="inputButton" >Kayıt ol</button>
-          <a href="/login" className="a">Giriş Yap</a>
+          <a href="/login" className="inputButton">Giriş Yap</a>
         </form>
       </div>
       
