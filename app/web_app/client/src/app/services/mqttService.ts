@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const mqttService = async (brokerIp: string) => {
+export const mqttService = async (brokerip: string) => {
   try {
-    const response = await axios.post('http://localhost:3001/main/broker', { brokerIp });
+    const response = await axios.post('http://localhost:3001/main/broker', { brokerip });
     if (response.status === 200) {
       return response.data; 
     }

@@ -1,15 +1,11 @@
 "use client";
-import { useEffect, useRef, } from 'react';
+import { useEffect, useRef } from 'react';
 import nipplejs from 'nipplejs';
 import './style.css';
 import { sendJoystickData } from '../services/joystickService';
 
-
-export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve
-
 function Joystick() {
   const containerRef = useRef(null);
-
 
   useEffect(() => {
     if (containerRef.current) {
@@ -20,7 +16,7 @@ function Joystick() {
         size: 175,
         restOpacity: 1,
       });
-  
+
       manager.on('move', (evt, data) => {
         const angleInRadians = data.angle.radian;
         const force = data.force;
@@ -32,25 +28,23 @@ function Joystick() {
           x /= maxXY;
           y /= maxXY;
         }
-  
-        sendJoystickData(x.toString(), y.toString());
+
+        sendJoystickData(x, y).catch(console.error);
       });
-  
+
       manager.on('end', () => {
-        sendJoystickData('0', '0');
+        sendJoystickData(0, 0).catch(console.error);
       });
-  
+
       return () => {
         manager.destroy();
       };
     }
   }, []);
 
-  
-  return (   
-        <div ref={containerRef} className='joystick' />
+  return (
+    <div ref={containerRef} className='joystick' />
   );
 }
-
 
 export default Joystick;

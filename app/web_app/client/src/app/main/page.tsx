@@ -3,21 +3,22 @@
 import { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import './style.css';
-
 import Navigation from './navigasyon';
 import Navbar from '../components/navigation/navbar';
 import WebSocketImageDisplay from './camera';
 import { mqttService } from '../services/mqttService';
 import  Joystick  from './joystick';
 
-export const ENDPOINT = "http://localhost:3001/main/joystick"; // Go server'ınızın çalıştığı port ve
 
 function App() {
   const { register, handleSubmit } = useForm();
   const [isConnected, setIsConnected] = useState(false);
+
   const onSubmit = async (data: any) => {
     try {
-      await mqttService(data.brokerIp);
+      console.log(data.brokerip)
+      await mqttService(data.brokerip);
+      
       setIsConnected(true);
       console.log('MQTT servisine bağlantı başarılı bir şekilde sağlandı.');
     } catch (error) {
