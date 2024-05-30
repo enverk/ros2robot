@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import './style.css';
-import Navigation from './navigasyon';
+import Navigation from './MapNav';
 import Navbar from '../components/navigation/navbar';
 import WebSocketImageDisplay from './camera';
 import { mqttService } from '../services/mqttService';

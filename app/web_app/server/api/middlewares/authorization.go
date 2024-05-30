@@ -27,27 +27,28 @@ func Authorize(next echo.HandlerFunc) echo.HandlerFunc {
 				}
 			}
 		}
-		// cookie, err := c.Cookie("access_token")
-		// if err == nil && cookie != nil {
-		// 	tokenCookie := cookie.Value
-		// 	token, err := jwt.Parse(tokenCookie, func(token *jwt.Token) (interface{}, error) {
-		// 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-		// 			return nil, echo.ErrUnauthorized
-		// 		}
-		// 		return jwtKey, nil
-		// 	})
-		// 	if err == nil && token.Valid {
-		// 		if claims, ok := token.Claims.(jwt.MapClaims); ok {
-		// 			email := claims["email"].(string)
-		// 			c.Set("email", email)
-		// 			return next(c)
-		// 		}
-		// 	}
-		// }
+		cookie, err := c.Cookie("access_token")
+		if err == nil && cookie != nil {
+			tokenCookie := cookie.Value
+			token, err := jwt.Parse(tokenCookie, func(token *jwt.Token) (interface{}, error) {
+				if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+					return nil, echo.ErrUnauthorized
+				}
+				return jwtKey, nil
+			})
+			if err == nil && token.Valid {
+				if claims, ok := token.Claims.(jwt.MapClaims); ok {
+					email := claims["email"].(string)
+					c.Set("email", email)
+					return next(c)
+				}
+			}
+		}
 
 		return echo.ErrUnauthorized
 	}
 }
+
 func MobileAuthorize(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		authHeader := c.Request().Header.Get("Authorization")

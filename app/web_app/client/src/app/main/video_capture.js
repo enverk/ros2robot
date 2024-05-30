@@ -6,7 +6,7 @@ const VideoStreamDisplay = () => {
   useEffect(() => {
     const fetchVideoFrame = async () => {
       try {
-        const response = await fetch("http://192.168.1.106:3002");
+        const response = await fetch("http://192.168.43.225:3002");
         reader.onload = () => {
           setImageSrc(reader.result);
         };
@@ -18,7 +18,7 @@ const VideoStreamDisplay = () => {
 
     fetchVideoFrame();
 
-    return () => {}; // Burada herhangi bir temizleyici fonksiyon yok çünkü fetch işlemi bir kere yapılıyor ve devamlı çalışan bir soket bağlantısı kapatılmıyor.
+    return () => {}; 
   }, []);
 
   return (

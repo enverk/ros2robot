@@ -24,6 +24,7 @@ func New(client *databases.Mongo) *echo.Echo {
 	e.POST("/main/broker", handlers.BrokerHandler)
 	e.POST("/login", r.Login)
 	e.POST("/mobile/login", r.MobileLogin)
+	e.POST("/main/coordinates",handlers.CoordinateHandler)
 
 	e.POST("/main/joystick", handlers.JoystickHandler)
 	e.POST("/signup", SignUpHandler(client))
