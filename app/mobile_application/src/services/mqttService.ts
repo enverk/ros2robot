@@ -17,3 +17,15 @@ export const sendBroker = async (brokerip: string): Promise<string> => {
     throw error;
   }
 };
+
+
+export const coordinateService = async (x: number,y:number) => {
+  try {
+    const response = await axios.post('http://10.0.2.2:3001/main/coordinates', { x,y });
+    if (response.status === 200) {
+      return response.data; 
+    }
+  } catch (error) {
+    throw new Error('Koordinantlar başarıyla gönderildi.');
+  }
+};

@@ -97,6 +97,47 @@ const styles = StyleSheet.create({
     height: "50%",
     tintColor: COLORS.white,
   },
+  mapButton: {
+    width: "90%",
+    height: "10%",
+    margin:'5%',
+    marginTop:5,
+    
+    backgroundColor: COLORS.softpurple,
+    borderRadius: SIZES.xLarge,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  mapButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.primary,
+  },
+  modalContent: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: COLORS.primary,
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+  },
+  closeButton: {
+    marginTop: 20,
+    backgroundColor: COLORS.softpurple,
+    padding: 10,
+    borderRadius: 25,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
  
  
  

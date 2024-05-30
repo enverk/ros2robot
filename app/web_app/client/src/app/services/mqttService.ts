@@ -18,6 +18,6 @@ export const coordinateService = async (x: number,y:number) => {
       return response.data; 
     }
   } catch (error) {
-    throw new Error('MQTT servisine bağlantı sağlanamadı.');
+    throw new Error('Koordinantlar başarıyla gönderildi.');
   }
 };

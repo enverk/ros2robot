@@ -1,5 +1,6 @@
 import React, {useState,} from 'react';
 import './style.css';
+import { coordinateService } from '../services/mqttService';
 
 const Navigation = () => {
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
@@ -9,6 +10,8 @@ const Navigation = () => {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     setCoordinates({ x, y });
+    
+    coordinateService(x,y);
   };
 
   return (
