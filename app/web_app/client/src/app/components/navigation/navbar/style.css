@@ -1,12 +1,11 @@
-/* Navbar container styling */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
 
 .navbar {
-  background-color: #202140; /* Navbar background color */
-  padding: 10px 20px; /* Padding */
+  background-color: #202140;
+  padding: 10px 20px;
 }
 
 .container {
@@ -16,6 +15,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .brand {
   color: white;
   font-size: 2rem;
@@ -23,10 +23,11 @@ body {
   text-decoration: none;
 }
 
-
 .menu-icon {
   display: none;
-  
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
 }
 
 .menu {
@@ -47,7 +48,6 @@ body {
   padding: 10px;
   position: relative;
   width: max-content;
-  
 }
 
 .menu-item:hover {
@@ -93,13 +93,16 @@ body {
     display: block;
   }
 
-  .menu {
-    flex-direction: column;
-    
-  }
+ 
 
   .menu-list {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .menu-item {
+    width: 100%;
+    text-align: center;
   }
 
   .submenu {

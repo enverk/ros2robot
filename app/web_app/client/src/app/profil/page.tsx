@@ -3,6 +3,7 @@
 import { useEffect, useState} from 'react';
 import { getUserInfo } from '../services/profileService';
 import { getToken } from '../services/authService'; 
+import Navbar from '../components/navigation/navbar';
 import './style.css'; 
 
 interface ProfileData {
@@ -35,6 +36,9 @@ const Profile = () => {
   }, []);
 
   return (
+    <div>
+      <Navbar />
+    
     <div className="profile-container">
       <h1>Profil</h1>
       <div className="profile-details">
@@ -49,6 +53,7 @@ const Profile = () => {
           <p>Loading...</p>
         )}
       </div>
+    </div>
     </div>
   );
 };

@@ -30,9 +30,10 @@ const Navigation = () => {
       <div className="container">
         <Link href="/main" className="brand">
           Brand
-          
         </Link>
-       
+        <div className="menu-icon" onClick={toggleMenu}>
+          ☰
+        </div>
         <div className={`menu ${isOpen ? "open" : ""}`}>
           <ul className="menu-list">
             <li>
@@ -51,7 +52,6 @@ const Navigation = () => {
                         <li>
                           <Link href="default.asp" className="submenu-item">
                             turtlebot
-                            
                           </Link>
                         </li>
                         <li>
@@ -72,7 +72,6 @@ const Navigation = () => {
                       </ul>
                     )}
                   </li>
-                  
                 </ul>
               )}
             </li>
