@@ -18,7 +18,7 @@ class Serial_Node_Final(Node):
         super().__init__("Serial_Node_Final")
 
         # Creating a Serial Object to Communicate with Arduino
-        self.ser = Serial("/dev/ttyUSB0", 115200, timeout=0.009)
+        self.ser = Serial("/dev/ttyUSB1", 115200, timeout=0.009)
         self.get_logger().info(self.ser.readline())
 
         # Determining Which Topic to Subscribe to in the ROS2 Network and

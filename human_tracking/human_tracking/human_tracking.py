@@ -85,17 +85,19 @@ class HumanTracking(Node):
 
 			# Use direction_x and direction_y to control your robot's movement
 
-		except Exception as e:
-			print("Error:", e)
-
-		# Render detections
-		self.mp_drawing.draw_landmarks(image, results.pose_landmarks, self.mp_pose.POSE_CONNECTIONS,
+			# Render detections
+			self.mp_drawing.draw_landmarks(image, results.pose_landmarks, self.mp_pose.POSE_CONNECTIONS,
 								self.mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
 								self.mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
 								)
-		msg = String()
-		msg.data = f"{a},{b}"
-		self.publisher_.publish(msg)
+			msg = String()
+			msg.data = f"{a},{b}"
+			self.publisher_.publish(msg)
+
+		except Exception as e:
+			print("Error:", e)
+
+		
 		
 	
 	
