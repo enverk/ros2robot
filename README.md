@@ -43,30 +43,34 @@ Raspberry'nin konsoluna eriştikten sonra, gerekli güncellemelerin yapılması 
 
 ```sh
 sudo apt update -y && sudo apt upgrade -y
+sh
+
 Güncelleme bittikten sonra çıkan pencereleri Enter tuşuna basarak geçiniz. Raspberry'yi yeniden başlatmak için aşağıdaki komutu çalıştırınız:
 
-sh
-Kodu kopyala
+```sh
 sudo reboot
+sh
+
 Raspberry yeniden başlayıp tekrar ağınıza bağlandıktan sonra SSH ile IP adresini ve şifrenizi kullanarak tekrar Raspberry'nin komut satırına erişin.
 
 9. Proje Dosyalarını İndirme ve Kurulum
 Gerekli güncellemeleri yaptıktan sonra, proje ve kurulum dosyalarını indirmek için aşağıdaki komutları çalıştırın:
 
-sh
-Kodu kopyala
+```sh
 sudo apt install git -y 
 git clone https://github.com/enverk/ros2robot.git ~/ros2robot/src/ros2robot
+sh
+
 Proje dosyalarında gerekli kurulumlar bulunmaktadır. Kurulumları yapabilmek için öncelikle dosyaların yürütülebilir hale getirilmesi gerekmektedir.
 
 Robot İçin
-sh
-Kodu kopyala
+```sh
 sudo chmod +x ~/ros2robot/src/ros2robot/installer/robot_installation.sh
 ~/ros2robot/src/ros2robot/installer/robot_installation.sh
-Server İçin
 sh
-Kodu kopyala
+Server İçin
+```sh
 sudo chmod +x ~/ros2robot/src/ros2robot/installer/server_installation.sh
 ~/ros2robot/src/ros2robot/installer/server_installation.sh
+sh
 Yukarıdaki adımları tamamladıktan sonra kurulum gerçekleştirilmiş olacaktır.
