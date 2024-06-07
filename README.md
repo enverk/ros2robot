@@ -53,7 +53,7 @@ Raspberry yeniden başlayıp tekrar ağınıza bağlandıktan sonra SSH ile IP a
 Gerekli güncellemeleri yaptıktan sonra, proje ve kurulum dosyalarını indirmek için aşağıdaki komutları çalıştırın:
 
     sudo apt install git -y 
-    git clone https://github.com/enverk/ros2robot.git ~/ros2robot/src/ros2robot
+        git clone https://github.com/enverk/ros2robot.git ~/ros2robot/src/ros2robot
 
 Proje dosyalarında gerekli kurulumlar bulunmaktadır. Kurulumları yapabilmek için öncelikle dosyaların yürütülebilir hale getirilmesi gerekmektedir.
 
