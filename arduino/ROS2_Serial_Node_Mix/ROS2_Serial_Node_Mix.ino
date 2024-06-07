@@ -23,8 +23,8 @@ unsigned long previous_time_motor_right = micros();
 unsigned long previous_time_motor_left = micros();
 
 // Creation of Step Periods of Motors
-int period_motor_left = 10000;
-int period_motor_right = 10000;
+int period_motor_left = 15000;
+int period_motor_right = 15000;
 
 void setup() {
   // Begining Communications
@@ -140,7 +140,7 @@ void fMotorMove() {
   unsigned long current_time_micros = micros();
 
   //Left Motor Controll
-  if (period_motor_left == 10000) {
+  if (period_motor_left == 15000) {
     digitalWrite(motor_left_enable, HIGH);
     digitalWrite(motor_left_pwm, LOW);
   } else if (current_time_micros - previous_time_motor_left > period_motor_left) {
@@ -150,7 +150,7 @@ void fMotorMove() {
   }
 
   // Right Motor Controll
-  if (period_motor_right == 10000) {
+  if (period_motor_right == 15000) {
     digitalWrite(motor_right_enable, HIGH);
     digitalWrite(motor_right_pwm, LOW);
   } else if (current_time_micros - previous_time_motor_right > period_motor_right) {
