@@ -49,7 +49,7 @@ Güncelleme bittikten sonra çıkan pencereleri Enter tuşuna basarak geçiniz. 
 
 Raspberry yeniden başlayıp tekrar ağınıza bağlandıktan sonra SSH ile IP adresini ve şifrenizi kullanarak tekrar Raspberry'nin komut satırına erişin.
 
-9. Proje Dosyalarını İndirme ve Kurulum
+### 9. Proje Dosyalarını İndirme ve Kurulum
 Gerekli güncellemeleri yaptıktan sonra, proje ve kurulum dosyalarını indirmek için aşağıdaki komutları çalıştırın:
 
     sudo apt install git -y \ 
