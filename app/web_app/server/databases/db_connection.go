@@ -12,6 +12,7 @@ type Mongo struct {
 	Client *mongo.Client
 }
 
+//sets up mongodb connection. 
 func New() (*Mongo, error) {
 	var err error
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://localhost:27017/"))

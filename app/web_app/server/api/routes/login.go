@@ -19,6 +19,8 @@ type LoginRequest struct {
 	Password string `json:"password"`
 }
 
+//Handles the login request comes from mobile and web.
+
 func (a *AuthRoute) Login(c echo.Context) error {
 
 	var logReq LoginRequest

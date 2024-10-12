@@ -10,6 +10,7 @@ import (
 	"ros2.com/web_app/server/databases"
 )
 
+//basic authentication for user
 func Authenticate(client *databases.Mongo, email, password string) (*domains.User, error) {
 
 	collection := client.Client.Database("ros2db").Collection("users")

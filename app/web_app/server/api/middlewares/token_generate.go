@@ -11,6 +11,8 @@ import (
 
 var jwtKey = []byte("ros2-secret-key")
 
+//generates the auth token for mobile and web users to log in and surf through the apps
+
 func GenerateToken(user *domains.User) (string, error) {
 	claims := jwt.MapClaims{
 		"sub":   1,

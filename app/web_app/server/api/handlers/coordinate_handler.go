@@ -13,6 +13,7 @@ type Coordinates struct {
 	Y float64 `json:"y"`
 }
 
+//Handles the coordinates that we clicked on the map in the our apps. Then sends it to the mqtt topic that we want to send.
 func CoordinateHandler(c echo.Context) error {
 
 	var jData Coordinates

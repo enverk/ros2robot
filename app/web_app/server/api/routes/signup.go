@@ -19,6 +19,7 @@ type SignupRequest struct {
 	Password string `json:"password"`
 }
 
+//Handles signup process
 func SignUp(c echo.Context, client *databases.Mongo) error {
 	var signupReqReq SignupRequest
 

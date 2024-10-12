@@ -6,6 +6,7 @@ import (
 	
 )
 
+//handles the publishing message to the topic to mqtt
 func Publisher(topic string, message string) {
 
 	if token := Client.Subscribe(topic, 1, nil); token.Wait() && token.Error() != nil {

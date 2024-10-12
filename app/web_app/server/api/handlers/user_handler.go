@@ -11,6 +11,7 @@ import (
 	"ros2.com/web_app/server/databases"
 )
 
+//gets user from our db (which is mongodb) and return the user.
 func GetUser(c echo.Context, client *databases.Mongo) error {
 	userEmail := c.Get("email").(string)
 

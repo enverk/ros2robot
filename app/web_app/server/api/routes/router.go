@@ -9,6 +9,8 @@ import (
 	"ros2.com/web_app/server/databases"
 )
 
+//Handles all the routes in this function
+
 func New(client *databases.Mongo) *echo.Echo {
 	e := echo.New()
 
@@ -21,6 +23,8 @@ func New(client *databases.Mongo) *echo.Echo {
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
 	}))
+
+	//POST request
 	e.POST("/main/broker", handlers.BrokerHandler)
 	e.POST("/login", r.Login)
 	e.POST("/mobile/login", r.MobileLogin)
@@ -29,6 +33,7 @@ func New(client *databases.Mongo) *echo.Echo {
 	e.POST("/main/joystick", handlers.JoystickHandler)
 	e.POST("/signup", SignUpHandler(client))
 
+	//GET request
 	e.GET("/userinfo", UserHandler(client), middlewares.Authorize)
 
 	MainGroup(mainGroup)

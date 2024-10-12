@@ -8,15 +8,16 @@ import (
 
 var Client MQTT.Client
 
-func Setup(broker string) error{
-	
+// sets up the mqtt connection with our robot.
+func Setup(broker string) error {
+
 	opts := MQTT.NewClientOptions()
 	opts.AddBroker(broker)
 	Client = MQTT.NewClient(opts)
 
 	if token := Client.Connect(); token.Wait() && token.Error() != nil {
 		fmt.Println("Bağlantı Hatası", token.Error())
-		return  token.Error()
+		return token.Error()
 	}
 	fmt.Printf("Broker ile bağlantı kuruldu!")
 	return nil

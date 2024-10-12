@@ -1,7 +1,6 @@
 package server
 
 import (
-
 	"fmt"
 
 	"ros2.com/web_app/server/api/routes"
@@ -9,6 +8,7 @@ import (
 	"ros2.com/web_app/server/databases"
 )
 
+// starts the server connection at port 3001
 func Run() {
 
 	client, err := databases.New()

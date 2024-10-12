@@ -9,7 +9,7 @@ import (
 var messageHandler MQTT.MessageHandler = func(client MQTT.Client, msg MQTT.Message) {
 	fmt.Printf("MQTT'den Alınan Mesaj: %s\n", msg.Payload())
 }
-
+//Mqtt topic listener func 
 func Listener(broker string) error {
 
 	opts := MQTT.NewClientOptions()
@@ -23,6 +23,7 @@ func Listener(broker string) error {
 	}
 	fmt.Println("Broker ile bağlantı kuruldu")
 
+	//put the topic that you want to listen on topic variable below here.
 	topic := "mqtt_topic"
 	if token := client.Subscribe(topic, 0, nil); token.Wait() && token.Error() != nil {
 		fmt.Println("Abonelik hatası:", token.Error())
